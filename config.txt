@@ -10,4 +10,4 @@ RANK|vip|عضو مميز|10|#FFB86B|gem|podcast|-1
 USER|Ňყxïøñ|owner||
 RING|rank:owner|#FFD54D|head
 RING|vip|#FFB86B|head
-ATLAS|8|8|mw6sxh2n
+ATLAS|8|8|mw6sz2xz
