@@ -9,7 +9,7 @@ RANK|mod|مشرف|30|#3EA0FF|badge|warn,jail,tp,mute,adminroom,podcast|-1
 RANK|helper|مساعد|20|#2EE59D|heart|warn,podcast|-1
 RANK|vip|عضو مميز|10|#FFB86B|gem|podcast|-1
 USER|Ňყxïøñ|owner||
-RING|rank:owner|#FFFFFF|shoulder|0|80|-1
+RING|rank:owner|#FFFFFF|shoulder|0|95|-1
 RING|vip|#FFB86B|head|-1|100|-1
 ATLAS|8|8|mw6z8fqq
 RINGS|1|16|mw6zbexr
