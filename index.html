@@ -47,19 +47,26 @@ textarea{width:100%;min-height:260px;background:#140d08;color:var(--txt);border:
   2) الصقه في خانة التوكن تحت واضغط <b>تجهيز المستودع والصفحة</b>. اللوحة تسوي المستودع <b>edc-panel</b> وتنشر نفسها وتفعّل GitHub Pages لحالها.</p>
   <div class="row"><button class="pri" onclick="setupAll()">⚙ تجهيز المستودع والصفحة</button><span class="hint" id="setupOut"></span></div>
 </div>
-<div class="card">
-  <div class="row">
-    <label class="f">حساب GitHub<input id="owner" placeholder="username"></label>
-    <label class="f">المستودع<input id="repo" placeholder="edc-panel"></label>
-    <label class="f">الفرع<input id="branch" value="main" style="width:90px"></label>
-    <label class="f" style="flex:1;min-width:220px">التوكن (يبقى في متصفحك فقط)<input id="token" type="password" placeholder="github_pat_..."></label>
-    <label class="f">&nbsp;<span class="row" style="gap:6px"><input type="checkbox" id="remember"> تذكرني</span></label>
+<div class="card" id="conn">
+  <div id="connOk" class="row hidden" style="justify-content:space-between">
+    <span>✓ متصل بـ GitHub (<b id="who"></b>) — التوكن محفوظ في هذا الجهاز، ما راح يطلبه منك مرة ثانية</span>
+    <span class="row"><button onclick="loadRemote()">⬇ تحديث</button><button class="pri" id="pubBtn" onclick="publish()">⬆ حفظ ونشر للماب</button></span>
   </div>
-  <div class="row" style="margin-top:10px">
-    <button onclick="loadRemote()">⬇ تحميل من GitHub</button>
-    <button class="pri" onclick="publish()">⬆ حفظ ونشر للماب</button>
-    <span class="hint" id="urls"></span>
-  </div>
+  <form id="connNo" class="hidden" onsubmit="event.preventDefault();connect()">
+    <b>الاتصال بـ GitHub — مرة وحدة بس على هذا الجهاز</b>
+    <p class="hint" style="margin:6px 0 10px">الصق التوكن واضغط <b>اتصال</b>. ينحفظ في هذا المتصفح وما يطلبه منك مرة ثانية. ما عندك توكن؟ سوّه من <a href="https://github.com/settings/tokens/new?scopes=repo&amp;description=EDC%20Panel" target="_blank" style="color:#ffd54d">هنا</a> واختر في Expiration: <b>No expiration</b> عشان ما ينتهي، بعدين <b>Generate token</b> وانسخه.</p>
+    <input type="text" id="ghuser" name="username" autocomplete="username" style="display:none">
+    <div class="row"><input id="token" name="password" type="password" placeholder="ghp_..." autocomplete="current-password" style="flex:1;min-width:220px"><button class="pri" type="submit">اتصال</button></div>
+  </form>
+  <details style="margin-top:8px"><summary class="hint" style="cursor:pointer">إعدادات متقدمة</summary>
+    <div class="row" style="margin-top:8px">
+      <label class="f">حساب GitHub<input id="owner" placeholder="username"></label>
+      <label class="f">المستودع<input id="repo" placeholder="edc-panel"></label>
+      <label class="f">الفرع<input id="branch" value="main" style="width:90px"></label>
+      <button class="del" onclick="forget()">نسيان التوكن من هذا الجهاز</button>
+    </div>
+    <p class="hint" id="urls" style="margin:8px 0 0"></p>
+  </details>
 </div>
 <div class="tabs" id="tabs"></div>
 <section id="t-ranks" class="card"></section>
@@ -172,10 +179,41 @@ async function sliceAtlas(blobUrl){
 
 // ---------------------------------------------------------------- GitHub
 function cfg(){ return {o:$("owner").value.trim(), r:$("repo").value.trim(), b:$("branch").value.trim()||"main", t:$("token").value.trim()}; }
+const PANEL_VER = 3;
 function saveCfg(){
   const c = cfg(); localStorage.setItem("edc_repo", JSON.stringify({o:c.o,r:c.r,b:c.b}));
-  if ($("remember").checked) localStorage.setItem("edc_token", c.t); else localStorage.removeItem("edc_token");
+  if (c.t) localStorage.setItem("edc_token", c.t);   // the token stays in this browser only, once entered it is never asked again
   showUrls();
+}
+function setConn(ok){
+  $("connOk").classList.toggle("hidden", !ok); $("connNo").classList.toggle("hidden", ok);
+  $("who").textContent = $("owner").value.trim() || "—";
+  $("ghuser").value = $("owner").value.trim();
+  if (!location.hostname.endsWith("github.io")) $("setup").style.display = ok ? "none" : "";   // first-time setup is done once connected
+}
+function forget(){ localStorage.removeItem("edc_token"); $("token").value = ""; setConn(false); say("انمسح التوكن من هذا الجهاز", "ok"); }
+function tokenBad(){ localStorage.removeItem("edc_token"); $("token").value = ""; setConn(false); }
+async function connect(){
+  if (!$("token").value.trim()){ say("الصق التوكن أول", "bad"); return; }
+  say("أتأكد من التوكن…");
+  const me = await api("/user");
+  if (!me.ok){ $("token").value = ""; say("التوكن غير صحيح أو منتهي (" + me.status + ") — سوّ واحد جديد من الرابط", "bad"); return; }
+  if (!$("owner").value.trim()) $("owner").value = me.js.login;
+  if (!$("repo").value.trim()) $("repo").value = "edc-panel";
+  saveCfg(); setConn(true);
+  say("تم الاتصال ✓ — التوكن محفوظ في هذا الجهاز", "ok");
+  await loadRemote(); selfUpdate();
+}
+// a newer copy of this page (e.g. the one on the PC) updates the online copy by itself, never the other way round
+async function selfUpdate(){
+  const c = cfg(); if (!c.t || !c.o || !c.r) return;
+  try {
+    const f = await gh("index.html");
+    const m = f && f.content ? utf8b64(f.content).match(/PANEL_VER\s*=\s*(\d+)/) : null;
+    if ((m ? +m[1] : 0) >= PANEL_VER) return;
+    await putFile("index.html", b64utf8(SELF), "panel: page v" + PANEL_VER);
+    say("تم تحديث اللوحة على النت ✓", "ok");
+  } catch(e){}
 }
 function showUrls(){ const c = cfg(); $("urls").textContent = c.o && c.r ? `روابط الماب: https://${c.o}.github.io/${c.r}/config.txt  •  atlas.png` : ""; }
 async function gh(path, opt = {}){
@@ -185,10 +223,11 @@ async function gh(path, opt = {}){
     headers: {"Accept":"application/vnd.github+json", ...(c.t ? {"Authorization":"Bearer " + c.t} : {})},
     body: opt.body ? JSON.stringify(opt.body) : undefined});
   if (r.status === 404 && !opt.method) return null;
+  if (r.status === 401 && c.t){ tokenBad(); throw new Error("التوكن انتهى أو انحذف — الصق توكن جديد فوق"); }
   if (!r.ok) throw new Error(`GitHub ${r.status}: ${(await r.text()).slice(0, 160)}`);
   return r.json();
 }
-const b64utf8 = s => btoa(String.fromCharCode(...new TextEncoder().encode(s)));
+const b64utf8 = s => { const b = new TextEncoder().encode(s); let r = ""; for (let i = 0; i < b.length; i += 0x8000) r += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000)); return btoa(r); };
 const utf8b64 = b => new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\s/g, "")), c => c.charCodeAt(0)));
 async function putFile(path, b64, msg){
   const c = cfg(); const cur = await gh(path);
@@ -209,7 +248,7 @@ async function setupAll(){
     out.textContent = "أتأكد من التوكن…";
     const me = await api("/user"); if (!me.ok) throw new Error("التوكن غير صحيح (" + me.status + ")");
     $("owner").value = me.js.login; if (!$("repo").value.trim()) $("repo").value = "edc-panel"; $("branch").value = "main";
-    $("remember").checked = true; saveCfg();
+    saveCfg(); setConn(true);
     const c = cfg();
     out.textContent = "أسوي المستودع…";
     let rp = await api(`/repos/${c.o}/${c.r}`);
@@ -237,17 +276,18 @@ async function loadRemote(){
   try {
     say("جاري التحميل…");
     const f = await gh("config.txt");
-    if (!f){ defaults(); render(); say("ما فيه config.txt بعد — بدأنا بالرتب الافتراضية. عدّل واضغط نشر.", "ok"); return; }
+    if (!f){ defaults(); render(); pubSig = sig(); say("ما فيه config.txt بعد — بدأنا بالرتب الافتراضية. عدّل واضغط نشر.", "ok"); return; }
     M = fromText(utf8b64(f.content));
     const a = await gh("atlas.png");
     if (a && a.content) await sliceAtlas("data:image/png;base64," + a.content.replace(/\s/g, ""));
-    render(); say("تم التحميل ✓", "ok");
+    render(); pubSig = sig(); markDirty(); say("تم التحميل ✓", "ok");
   } catch(e){ say("تعذر التحميل: " + e.message, "bad"); }
 }
 async function publish(){
   saveCfg();
   const c = cfg();
-  if (!c.o || !c.r || !c.t){ say("اكتب حساب GitHub والمستودع والتوكن أول", "bad"); return; }
+  if (!c.t){ setConn(false); say("الصق التوكن مرة وحدة واضغط اتصال، بعدين انشر", "bad"); $("token").focus(); return; }
+  if (!c.o || !c.r){ say("اكتب حساب GitHub والمستودع في الإعدادات المتقدمة", "bad"); return; }
   try {
     say("جاري تجهيز الشعارات…");
     const at = await buildAtlas();
@@ -256,10 +296,21 @@ async function publish(){
     await putFile("atlas.png", at.canvas.toDataURL("image/png").split(",")[1], "panel: emblems " + ver);
     say("جاري رفع الإعدادات…");
     await putFile("config.txt", b64utf8(toText(ver)), "panel: config " + ver);
-    render();
-    say("تم النشر ✓ — تظهر في الماب خلال 2 إلى 5 دقائق (أو أول ما تدخل جلسة جديدة)", "ok");
+    render(); pubSig = sig(); markDirty();
+    say("تم النشر ✓ — تظهر في الماب خلال 2 إلى 5 دقائق", "ok");
+    selfUpdate();
   } catch(e){ say("تعذر النشر: " + e.message, "bad"); }
 }
+let pubSig = null;
+const sig = () => JSON.stringify(M, (k, v) => k === "cell" ? undefined : (k === "img" && v ? v.length : v));
+function markDirty(){
+  const d = pubSig !== null && sig() !== pubSig, b = $("pubBtn");
+  if (b) b.textContent = d ? "⬆ حفظ ونشر للماب ●" : "⬆ حفظ ونشر للماب";
+  if (b) b.title = d ? "عندك تعديلات ما انتشرت" : "";
+  return d;
+}
+setInterval(markDirty, 1000);
+window.addEventListener("beforeunload", e => { if (markDirty()){ e.preventDefault(); e.returnValue = ""; } });
 function say(t, k){ const s = $("status"); s.textContent = t; s.className = k || ""; s.style.display = "block"; clearTimeout(say.t); if (k) say.t = setTimeout(() => s.style.display = "none", 9000); }
 
 // ---------------------------------------------------------------- UI
@@ -319,22 +370,28 @@ function renderClans(){
           <button class="del" onclick="del('clans.${i}.ranks',${j})">حذف</button></div>`).join("")}</div></div>
   </div>`).join("") + (M.clans.length ? "" : `<p class="hint">ما فيه كلانات بعد.</p>`);
 }
+function permText(key){
+  const r = M.ranks.find(x => x.key === key); if (!r) return "—";
+  if (r.perms.includes("all")) return "كل الصلاحيات";
+  return r.perms.map(k => (PERMS.find(p => p[0] === k) || [k, k])[1]).join("، ") || "بدون صلاحيات";
+}
 function opt(list, val, none){ return (none ? `<option value="">${none}</option>` : "") + list.map(([k,n]) => `<option value="${k}" ${k===val?"selected":""}>${esc(n)}</option>`).join(""); }
 let filter = "";
 function renderUsers(){
   const rk = M.ranks.map(r => [r.key, r.name]), cl = M.clans.map(c => [c.key, c.name]);
   $("t-users").innerHTML = `<div class="row" style="justify-content:space-between"><b>الأعضاء</b><span class="row"><input placeholder="بحث…" value="${esc(filter)}" oninput="filter=this.value;renderUsers();this.focus();this.selectionStart=this.value.length">
     <button onclick="M.users.unshift({name:'',rank:'',clan:'',crank:''});render()">＋ عضو</button></span></div>
-  <table><tr><th>اسم VRChat (بالضبط)</th><th>الرتبة</th><th>الكلان</th><th>رتبة الكلان</th><th></th></tr>` +
+  <table><tr><th>اسم VRChat (بالضبط)</th><th>الرتبة</th><th>الصلاحيات</th><th>الكلان</th><th>رتبة الكلان</th><th></th></tr>` +
   M.users.map((u,i) => {
     if (filter && !u.name.toLowerCase().includes(filter.toLowerCase())) return "";
     const c = M.clans.find(x => x.key === u.clan);
     return `<tr><td><input value="${esc(u.name)}" oninput="M.users[${i}].name=this.value" style="width:100%"></td>
       <td><select onchange="setv('users.${i}','rank',this.value)">${opt(rk, u.rank, "— بدون —")}</select></td>
+      <td class="hint" style="font-size:11.5px;max-width:220px">${permText(u.rank)}</td>
       <td><select onchange="M.users[${i}].crank='';setv('users.${i}','clan',this.value)">${opt(cl, u.clan, "— بدون —")}</select></td>
       <td><select onchange="setv('users.${i}','crank',this.value)" ${c?"":"disabled"}>${opt(c ? c.ranks.map(r => [r.key, r.name]) : [], u.crank, "—")}</select></td>
       <td><button class="del" onclick="del('users',${i})">✕</button></td></tr>`; }).join("") + `</table>
-  <p class="hint">اكتب اسم اللاعب في VRChat بالضبط كما يظهر (الحروف الكبيرة والصغيرة ما تفرق).</p>`;
+  <p class="hint">اكتب اسم اللاعب في VRChat بالضبط كما يظهر (الحروف الكبيرة والصغيرة ما تفرق)، اختر رتبته، واضغط <b>حفظ ونشر</b> — تنضاف له داخل VRChat خلال دقائق بدون رفع للماب. الصلاحيات تجي من الرتبة (تعدّلها من تبويب الرتب).</p>`;
 }
 function renderRings(){
   const targets = [["vip","مشترين VIP"], ...M.ranks.map(r => ["rank:" + r.key, "رتبة: " + r.name]), ...M.clans.map(c => ["clan:" + c.key, "كلان: " + c.name])];
@@ -358,11 +415,11 @@ async function renderText(){
 // ---------------------------------------------------------------- start
 (function(){
   try { const s = JSON.parse(localStorage.getItem("edc_repo") || "{}"); if (s.o) $("owner").value = s.o; if (s.r) $("repo").value = s.r; if (s.b) $("branch").value = s.b; } catch(e){}
-  const t = localStorage.getItem("edc_token"); if (t){ $("token").value = t; $("remember").checked = true; }
+  const t = localStorage.getItem("edc_token"); if (t) $("token").value = t;
   if (!$("repo").value){ const h = location.hostname.split("."); if (h[1] === "github" && h[2] === "io"){ $("owner").value = h[0]; $("repo").value = location.pathname.split("/").filter(Boolean)[0] || ""; } }
   ["owner","repo","branch"].forEach(id => $(id).addEventListener("change", saveCfg));
   if (location.hostname.endsWith("github.io")) $("setup").style.display = "none";
-  showUrls(); defaults(); render();
-  if ($("owner").value && $("repo").value) loadRemote();
+  showUrls(); defaults(); render(); setConn(!!t);
+  if ($("owner").value && $("repo").value) loadRemote().then(() => { if (t) selfUpdate(); });
 })();
 </script></body></html>
