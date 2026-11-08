@@ -12,5 +12,6 @@ USER|Ňყxïøñ|owner||
 RING|rank:owner|#FFFFFF|shoulder|0|110|52
 RING|vip|#FFB86B|head|-1|100|-1
 RING|rank:manager|#FFFFFF|shoulder|1|100|-1
+RING|rank:admin|#A35CFF|shoulder|-1|100|-1
 ATLAS|8|8|mw6z8fqq
 RINGS|1|16|mw8bnkf4
