@@ -3,7 +3,7 @@
 # USER|vrchat name|rank|clan|clan rank   VIP|vrchat name   RING|rank:key / clan:key / vip / user:name|color|head or shoulder|picture strip|size %|arm: % shoulder->elbow, head: height %
 # ATLAS|cols|rows|version (emblems)   RINGS|cols|rows|version (ring pictures, 1024 x 128 slots)
 RANK|owner|Community|60|#FFD54D|crown|all|-1
-RANK|manager|مدير|50|#FF4D6D|shield|warn,kick,ban,jail,tp,mute,access,vip,coins,adminroom,podcast|-1
+RANK|manager||50|#FF4D6D|shield|warn,kick,ban,jail,tp,mute,access,vip,coins,adminroom,podcast|-1
 RANK|admin|أدمن|40|#A35CFF|star|warn,kick,jail,tp,mute,access,adminroom,podcast|-1
 RANK|mod|مشرف|30|#3EA0FF|badge|warn,jail,tp,mute,adminroom,podcast|-1
 RANK|helper|مساعد|20|#2EE59D|heart|warn,podcast|-1
@@ -12,4 +12,4 @@ USER|Ňყxïøñ|owner||
 RING|rank:owner|#FFFFFF|shoulder|0|110|52
 RING|vip|#FFB86B|head|-1|100|-1
 ATLAS|8|8|mw6z8fqq
-RINGS|1|16|mw6zbexr
+RINGS|1|16|mw8bau0p
