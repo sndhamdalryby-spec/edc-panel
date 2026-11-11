@@ -4,10 +4,11 @@
 # ATLAS|cols|rows|version (emblems)   RINGS|cols|rows|version (ring pictures, 1024 x 128 slots)
 RANK|owner|Community|60|#FFD54D|crown|all|-1
 RANK|manager|Owner|50|#FF4D6D|gem|warn,kick,ban,jail,tp,mute,access,vip,coins,adminroom,podcast,all|-1
-RANK|mod||40|#3EA0FF|badge|warn,jail,tp,mute,adminroom,podcast|-1
+RANK|mod|Co Owner|40|#3EA0FF|badge|warn,jail,tp,mute,adminroom,podcast|-1
 RANK|admin|star|30|#A35CFF|star|warn,kick,jail,tp,mute,access,adminroom,podcast,ban,vip,coins,all|-1
 RANK|helper|مساعد|20|#2EE59D|heart|warn,podcast|-1
 RANK|vip|عضو مميز|10|#FFB86B|gem|podcast|-1
+USER|RÚRA|mod||
 USER|al3grap|owner||
 USER|M a r t i n|admin||
 USER|AbuS3oOod|owner||
