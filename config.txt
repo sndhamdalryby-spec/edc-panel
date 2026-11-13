@@ -11,7 +11,7 @@ RANK|helper|مساعد|20|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,s
 RANK|vip|عضو مميز|10|#FFB86B|gem|podcast|-1
 USER|RÚRA|mod||
 USER|al3grap|owner||
-USER|M a r t i n|admin||
+USER|M a r t i n|mod||
 USER|AbuS3oOod|owner||
 USER|S T Oʚɞ|admin||
 USER|K̷H̷D̷|manager||
