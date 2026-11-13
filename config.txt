@@ -12,7 +12,7 @@ RANK|vip|عضو مميز|10|#FFB86B|gem|podcast|-1
 USER|NΛD ~|helper||
 USER|RÚRA|mod||
 USER|al3grap|owner||
-USER|M a r t i n|mod|||+kick,+ban,+release,+items,+returnitems,+givefly,+givemic,+mic,+radio,+radioctl,+radioadd,+access
+USER|M a r t i n|mod|||+kick,+ban,+release,+items,+returnitems,+givefly,+givemic,+mic,+radio,+radioctl,+radioadd,+banroom,+viprooms,+walls,+access
 USER|AbuS3oOod|owner||
 USER|S T Oʚɞ|admin||
 USER|K̷H̷D̷|manager||
