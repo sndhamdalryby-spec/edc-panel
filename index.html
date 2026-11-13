@@ -3,51 +3,69 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Everyday Map VR Chat — لوحة التحكم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&amp;family=Reem+Kufi:wght@500;700&amp;display=swap" rel="stylesheet">
 <style>
-:root{--bg:#1d140e;--card:#2a1d14;--card2:#352418;--line:#5b4029;--txt:#f6eadb;--sub:#c9b39a;--acc:#e0a050;--gold:#ffd54d;--ok:#5fcf8a;--bad:#e05a4a}
+:root{--bg:#16112a;--ink:#0f0b1f;--card:#201936;--card2:#291f45;--line:#3a2e60;--txt:#f5f0ff;--sub:#b3a8d4;--acc:#f2b64c;--gold:#ffd27a;--ok:#46c79f;--bad:#e3584f;--kufi:"Reem Kufi","Readex Pro",sans-serif}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(1200px 600px at 70% -10%,#3a2717,var(--bg));color:var(--txt);font-family:"Segoe UI",Tahoma,"Noto Kufi Arabic",sans-serif;font-size:15px}
-header{display:flex;align-items:center;gap:14px;padding:16px 22px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.18)}
-header h1{margin:0;font-size:20px}header .sub{color:var(--sub);font-size:13px}
-.logo{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--acc));display:grid;place-items:center;color:#2a1d14;font-weight:800}
-main{max-width:1100px;margin:0 auto;padding:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+body{margin:0;min-height:100vh;background:radial-gradient(900px 480px at 88% -12%,#3b2570 0%,transparent 62%),radial-gradient(700px 420px at -5% 0%,#251a4a 0%,transparent 58%),var(--bg);color:var(--txt);font-family:"Readex Pro","Segoe UI",Tahoma,sans-serif;font-size:15px;line-height:1.5}
+header{position:relative;display:flex;align-items:center;gap:14px;padding:18px 22px 20px;background:linear-gradient(180deg,rgba(15,11,31,.92),rgba(15,11,31,.6))}
+header::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:12px;border-top:2px solid var(--bad);border-bottom:2px solid var(--bad);background:linear-gradient(135deg,var(--ink) 25%,transparent 25%) -6px 0,linear-gradient(225deg,var(--ink) 25%,transparent 25%) -6px 0,linear-gradient(315deg,var(--ink) 25%,transparent 25%),linear-gradient(45deg,var(--ink) 25%,transparent 25%);background-size:12px 8px;background-color:var(--acc)}
+header h1{margin:0;font-family:var(--kufi);font-weight:700;font-size:24px;letter-spacing:0}header .sub{color:var(--sub);font-size:13px}
+.logo{width:46px;height:46px;border-radius:14px;transform:rotate(45deg);background:linear-gradient(135deg,var(--gold),var(--acc) 60%,var(--bad));display:grid;place-items:center;flex:none;box-shadow:0 0 0 3px var(--ink),0 0 0 4px var(--line);margin:0 6px}
+.logo span{transform:rotate(-45deg);color:var(--ink);font-family:var(--kufi);font-weight:700;font-size:14px}
+main{max-width:1100px;margin:0 auto;padding:30px 18px 18px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0) 120px),var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:16px}
+.card > b:first-child{font-family:var(--kufi);font-size:17px;font-weight:700}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 label.f{display:flex;flex-direction:column;gap:4px;color:var(--sub);font-size:12px}
-input,select{background:#1a110b;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:7px 9px;font:inherit}
+input,select{background:var(--ink);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:inherit}
+input:focus-visible,select:focus-visible,button:focus-visible,.chip:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 input[type=color]{padding:0;width:38px;height:34px;border-radius:8px}
-button{background:var(--card2);color:var(--txt);border:1px solid var(--line);border-radius:9px;padding:8px 14px;font:inherit;cursor:pointer}
-button:hover{border-color:var(--acc)}button.pri{background:linear-gradient(180deg,#d9963f,#a86a26);border-color:#e9b46a;color:#1d140e;font-weight:700}
-button.del{color:#ffb4a8;border-color:#7a3a30;padding:6px 10px}button.sm{padding:5px 10px;font-size:13px}
-.tabs{display:flex;gap:6px;margin:6px 0 14px;flex-wrap:wrap}.tabs button.on{border-color:var(--gold);color:var(--gold)}
-.item{display:flex;gap:10px;align-items:center;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0;flex-wrap:wrap}
+button{background:var(--card2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font:inherit;cursor:pointer;transition:border-color .15s,background .15s}
+button:hover{border-color:var(--acc)}button.pri{background:linear-gradient(180deg,#ffd27a,#ec9f2e);border-color:#ffd88c;color:#231704;font-weight:700}
+button.del{color:#ffb1ab;border-color:#6b2c40;background:transparent;padding:6px 10px}button.del:hover{background:rgba(227,88,79,.12);border-color:var(--bad)}button.sm{padding:5px 10px;font-size:13px}
+.tabs{display:flex;gap:4px;margin:6px 0 16px;flex-wrap:wrap;width:fit-content;max-width:100%;background:var(--ink);border:1px solid var(--line);border-radius:14px;padding:5px}
+.tabs button{background:transparent;border-color:transparent;color:var(--sub);padding:8px 18px}.tabs button:hover{color:var(--txt);border-color:transparent}
+.tabs button.on{background:var(--acc);color:#231704;font-weight:600}
+.item{display:flex;gap:10px;align-items:center;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0;flex-wrap:wrap}
 .item.drag{opacity:.45}.handle{cursor:grab;color:var(--sub);font-size:20px;padding:0 4px;user-select:none}
-.em{width:44px;height:44px;border-radius:10px;background:#140d08;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;cursor:pointer;position:relative}
+.em{width:46px;height:46px;border-radius:12px;background:var(--ink);border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;cursor:pointer;position:relative}
 .em img{width:100%;height:100%;object-fit:contain}
-.chips{display:flex;gap:5px;flex-wrap:wrap}.chip{border:1px solid var(--line);border-radius:999px;padding:3px 9px;font-size:12px;cursor:pointer;color:var(--sub);user-select:none}
-.chip.on{background:rgba(224,160,80,.18);border-color:var(--acc);color:var(--txt)}
-.pgs{display:flex;flex-direction:column;gap:7px;width:100%;margin-top:4px}.pg{background:rgba(0,0,0,.14);border:1px solid var(--line);border-radius:10px;padding:7px 9px}
-.pgt{color:var(--gold);font-size:12px;margin-bottom:5px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:12.5px;cursor:pointer;color:var(--sub);user-select:none;background:rgba(255,255,255,.02)}.chip:hover{border-color:var(--sub)}
+.chip.on{background:rgba(70,199,159,.16);border-color:var(--ok);color:#eafff7}.chip.on::before{content:"✓ ";color:var(--ok)}
+.pgs{display:flex;flex-direction:column;gap:8px;width:100%;margin-top:6px;padding-top:12px;border-top:1px dashed var(--line)}.pg{background:rgba(15,11,31,.45);border:1px solid var(--line);border-radius:12px;padding:9px 11px}
+.pgt{color:var(--gold);font-family:var(--kufi);font-size:13.5px;margin-bottom:7px}
 .lv{min-width:54px;text-align:center;color:var(--gold);font-size:12px}
 .hint{color:var(--sub);font-size:12.5px;line-height:1.7}
 .sub-list{width:100%;padding-right:46px}
 table{width:100%;border-collapse:collapse}td,th{padding:6px;border-bottom:1px solid var(--line);text-align:right}th{color:var(--sub);font-weight:600;font-size:13px}
-#status{position:fixed;bottom:16px;left:16px;right:16px;max-width:620px;margin:auto;background:#0f0a06;border:1px solid var(--line);border-radius:12px;padding:10px 14px;display:none}
+#status{position:fixed;bottom:16px;left:16px;right:16px;max-width:620px;margin:auto;background:var(--ink);border:1px solid var(--line);border-radius:12px;padding:10px 14px;display:none}
 #status.ok{border-color:var(--ok)}#status.bad{border-color:var(--bad)}
-textarea{width:100%;min-height:260px;background:#140d08;color:var(--txt);border:1px solid var(--line);border-radius:10px;font:12.5px/1.6 Consolas,monospace;direction:ltr;padding:10px}
-.iconpick{display:flex;gap:4px;flex-wrap:wrap;max-width:330px}.iconpick img{width:30px;height:30px;padding:3px;border-radius:7px;border:1px solid transparent;cursor:pointer;background:#140d08}
+textarea{width:100%;min-height:260px;background:var(--ink);color:var(--txt);border:1px solid var(--line);border-radius:10px;font:12.5px/1.6 Consolas,monospace;direction:ltr;padding:10px}
+.iconpick{display:flex;gap:4px;flex-wrap:wrap;max-width:330px}.iconpick img{width:30px;height:30px;padding:3px;border-radius:8px;border:1px solid transparent;cursor:pointer;background:var(--ink)}
 .iconpick img.on{border-color:var(--gold)}
 .hidden{display:none}
+.permbtn{display:inline-flex;align-items:center;gap:8px}.permbtn.on{border-color:var(--acc);color:var(--acc)}
+.permbtn .cnt{background:var(--ink);border:1px solid var(--line);border-radius:999px;padding:0 9px;font-size:12px;color:var(--gold)}
+.namewrap{display:inline-flex;align-items:stretch}.namewrap input{border-radius:0 10px 10px 0}
+.emobtn{border-radius:10px 0 0 10px;margin-right:-1px;padding:0 10px;font-size:17px;line-height:1}
+.emo{position:fixed;z-index:60;background:var(--card);border:1px solid var(--line);border-top:3px solid var(--acc);border-radius:16px;padding:12px;width:min(330px,94vw);box-shadow:0 18px 44px rgba(0,0,0,.55)}
+.emo b{font-family:var(--kufi);font-size:14px;color:var(--gold)}
+.emo .g{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;margin:6px 0 12px}
+.emo .g span{display:grid;place-items:center;height:34px;border-radius:9px;cursor:pointer;font-size:19px;background:var(--ink);border:1px solid transparent}.emo .g span:hover{border-color:var(--acc)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:480px){main{padding:26px 10px 10px}.tabs button{padding:7px 10px;font-size:14px}.card{padding:14px 13px}header{padding:16px 14px 18px}}
 .ringbtn{display:inline-flex;align-items:center;gap:7px;font-size:13px;padding:6px 11px}
 .ringbtn.on{border-color:var(--gold);color:var(--gold)}
 .ringbtn img{height:16px;width:110px;object-fit:cover;border-radius:3px}
 .sw{display:inline-block;width:26px;height:14px;border-radius:4px;border:1px solid var(--line)}
-.modal{position:fixed;inset:0;background:rgba(10,6,3,.72);display:flex;align-items:flex-start;justify-content:center;z-index:50;overflow:auto;padding:24px 10px}
+.modal{position:fixed;inset:0;background:rgba(9,6,20,.74);display:flex;align-items:flex-start;justify-content:center;z-index:50;overflow:auto;padding:24px 10px}
 .modal.hidden{display:none}
-.mbox{background:var(--card);border:1px solid var(--acc);border-radius:16px;padding:16px 18px;width:min(940px,100%);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.mbox{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--acc);border-radius:18px;padding:16px 18px;width:min(940px,100%);box-shadow:0 20px 60px rgba(0,0,0,.6)}
 .mbox .sec{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
 .seg button{border-radius:0}.seg button:first-child{border-radius:0 9px 9px 0}.seg button:last-child{border-radius:9px 0 0 9px}
-.seg button.pri{color:#1d140e}
+.seg button.pri{color:#231704}
 .strip{width:100%;max-width:640px;aspect-ratio:1024/120;border-radius:6px;border:1px solid var(--line);display:block;background-color:#2a2a2a;background-image:linear-gradient(45deg,#3a3a3a 25%,transparent 25%,transparent 75%,#3a3a3a 75%),linear-gradient(45deg,#3a3a3a 25%,transparent 25%,transparent 75%,#3a3a3a 75%);background-size:16px 16px;background-position:0 0,8px 8px}
 .chk{background-color:#2a2a2a;background-image:linear-gradient(45deg,#3a3a3a 25%,transparent 25%,transparent 75%,#3a3a3a 75%),linear-gradient(45deg,#3a3a3a 25%,transparent 25%,transparent 75%,#3a3a3a 75%);background-size:16px 16px;background-position:0 0,8px 8px}
 #cropView{position:relative;width:100%;aspect-ratio:1024/120;overflow:hidden;border:2px solid var(--gold);border-radius:6px;cursor:grab;touch-action:none;background-color:#2a2a2a;background-image:linear-gradient(45deg,#3a3a3a 25%,transparent 25%,transparent 75%,#3a3a3a 75%),linear-gradient(45deg,#3a3a3a 25%,transparent 25%,transparent 75%,#3a3a3a 75%);background-size:16px 16px;background-position:0 0,8px 8px}
@@ -62,7 +80,7 @@ textarea{width:100%;min-height:260px;background:#140d08;color:var(--txt);border:
 </style>
 </head>
 <body>
-<header><div class="logo">EDC</div><div><h1>Everyday Map VR Chat — لوحة التحكم</h1><div class="sub">الرتب • الكلانات • الأعضاء • الحلقات — التعديلات تظهر في الماب خلال دقيقة تقريباً بدون رفع جديد</div></div></header>
+<header><div class="logo"><span>EDC</span></div><div><h1>لوحة تحكم Everyday Map</h1><div class="sub">عدّل الرتب والكلانات والأعضاء، وكل تعديل يوصل الماب خلال دقيقة بدون رفع جديد.</div></div></header>
 <main>
 <div class="card" id="setup">
   <b>إعداد أول مرة (مرة وحدة بس)</b>
@@ -76,7 +94,7 @@ textarea{width:100%;min-height:260px;background:#140d08;color:var(--txt);border:
     <span class="row"><button onclick="loadRemote()">⬇ تحديث</button><button class="pri" id="pubBtn" onclick="publish()">⬆ حفظ ونشر للماب</button></span>
   </div>
   <form id="connNo" class="hidden" onsubmit="event.preventDefault();connect()">
-    <b>الاتصال بـ GitHub — من أي جهاز: افتح هذا الرابط، الصق التوكن، واضغط اتصال</b>
+    <b>اتصل بـ GitHub من أي جهاز: افتح الرابط، الصق التوكن، واضغط اتصال</b>
     <p class="hint" style="margin:6px 0 10px">الصق التوكن واضغط <b>اتصال</b>. ينحفظ في هذا المتصفح وما يطلبه منك مرة ثانية. ما عندك توكن؟ سوّه من <a href="https://github.com/settings/tokens/new?scopes=repo&amp;description=EDC%20Panel" target="_blank" style="color:#ffd54d">هنا</a> واختر في Expiration: <b>No expiration</b> عشان ما ينتهي، بعدين <b>Generate token</b> وانسخه.</p>
     <input type="text" id="ghuser" name="username" autocomplete="username" style="display:none">
     <div class="row"><input id="token" name="password" type="password" placeholder="ghp_..." autocomplete="current-password" style="flex:1;min-width:220px"><button class="pri" type="submit">اتصال</button></div>
@@ -100,6 +118,7 @@ textarea{width:100%;min-height:260px;background:#140d08;color:var(--txt);border:
 </main>
 <div id="status"></div>
 <div id="ringDlg" class="modal hidden" onclick="if(event.target===this)closeRing()"><div class="mbox" id="ringBox"></div></div>
+<div id="emoPop" class="emo hidden"></div>
 <div id="upDlg" class="modal hidden" onclick="if(event.target===this)closeUp()"><div class="mbox" id="upBox"></div></div>
 <input type="file" id="filepick" accept="image/*" class="hidden">
 <script>
@@ -149,7 +168,7 @@ let tab = "ranks";
 const $ = id => document.getElementById(id);
 const uid = p => p + Math.random().toString(36).slice(2, 7);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const clean = s => String(s ?? "").replace(/[|\n\r]/g, " ").trim();
+const clean = s => String(s ?? "").replace(/[|\n\r]/g, " ").replace(/[\uFE0E\uFE0F]/g, "").trim();
 
 function defaults(){
   M = {ranks:[
@@ -327,7 +346,7 @@ async function encodePNG(w, h, rgba){
 
 // ---------------------------------------------------------------- GitHub
 function cfg(){ return {o:$("owner").value.trim(), r:$("repo").value.trim(), b:$("branch").value.trim()||"main", t:$("token").value.trim()}; }
-const PANEL_VER = 17;
+const PANEL_VER = 18;
 function saveCfg(){
   const c = cfg(); localStorage.setItem("edc_repo", JSON.stringify({o:c.o,r:c.r,b:c.b}));
   if (c.t) localStorage.setItem("edc_token", c.t);   // the token stays in this browser only, once entered it is never asked again
@@ -576,20 +595,50 @@ function dropOn(e, listPath){
 }
 function renderRanks(){
   const n = M.ranks.length;
-  $("t-ranks").innerHTML = `<div class="row" style="justify-content:space-between"><b>الرتب (اسحب ⠿ للترتيب — الأعلى أقوى)</b><button onclick="M.ranks.push({key:uid('r'),name:'رتبة جديدة',color:'#E0A050',icon:'star',img:null,perms:['warn']});render()">＋ رتبة</button></div>
+  $("t-ranks").innerHTML = `<div class="row" style="justify-content:space-between"><b>الرتب: اسحب ⠿ للترتيب، والأعلى أقوى</b><button onclick="M.ranks.push({key:uid('r'),name:'رتبة جديدة',color:'#E0A050',icon:'star',img:null,perms:['warn']});render()">＋ رتبة</button></div>
   <div ${dragList("ranks")}>` + M.ranks.map((r,i) => `
   <div class="item" draggable="true" ondragstart="dragStart(event,'ranks',${i})">
     <span class="handle">⠿</span>${emblem(r, "ranks." + i)}
     <div class="lv">مستوى ${(n-i)*10}</div>
-    <input value="${esc(r.name)}" oninput="setv('ranks.${i}','name',this.value)" style="width:150px">
+    <span class="namewrap"><input value="${esc(r.name)}" oninput="setv('ranks.${i}','name',this.value)" style="width:150px"><button class="emobtn" title="أضف رمز أو إيموجي للاسم" onclick="emo('ranks.${i}',this)">😊</button></span>
     <input type="color" value="${r.color}" onchange="setv('ranks.${i}','color',this.value)">
     <div class="iconpick">${ICON_NAMES.filter(k=>ICONS[k]).map(k => `<img src="${ICONS[k]}" class="${r.icon===k&&!r.img?"on":""}" onclick="M.ranks[${i}].icon='${k}';M.ranks[${i}].img=null;render()">`).join("")}</div>
-    <div class="pgs">${PERM_GROUPS.map(([g, list]) => `<div class="pg"><div class="pgt">${g}</div><div class="chips">${list.map(([k,t]) => `<span class="chip ${r.perms.includes(k)||(r.perms.includes("all")&&k!=="walls")?"on":""}" onclick="togPerm(${i},'${k}')">${t}</span>`).join("")}</div></div>`).join("")}
-      <div class="chips"><span class="chip ${r.perms.includes("all")?"on":""}" onclick="togPerm(${i},'all')">كل الصلاحيات</span><span class="chip" onclick="M.ranks[${i}].perms=[];render()">مسح الكل</span></div></div>
+    <button class="permbtn ${openP.has(r.key)?"on":""}" onclick="togP('${r.key}')">⚙ الصلاحيات <span class="cnt">${permCount(r)}</span></button>
     ${ringBtn("rank:" + r.key)}
     <button class="del" onclick="del('ranks',${i})">حذف</button>
+    ${openP.has(r.key) ? `<div class="pgs">${PERM_GROUPS.map(([g, list]) => `<div class="pg"><div class="pgt">${g}</div><div class="chips">${list.map(([k,t]) => `<span class="chip ${r.perms.includes(k)||(r.perms.includes("all")&&k!=="walls")?"on":""}" onclick="togPerm(${i},'${k}')">${t}</span>`).join("")}</div></div>`).join("")}
+      <div class="chips"><span class="chip ${r.perms.includes("all")?"on":""}" onclick="togPerm(${i},'all')">كل الصلاحيات</span><span class="chip" onclick="M.ranks[${i}].perms=[];render()">مسح الكل</span></div></div>` : ""}
   </div>`).join("") + `</div><p class="hint">اضغط المربع لرفع شعار خاص (صورة مربعة أفضل). بدون شعار يظهر الرمز المختار. الأعلى في القائمة يقدر يعاقب اللي تحته فقط.</p>`;
 }
+// v18: a rank's permissions stay folded until its button is pressed
+const openP = new Set();
+function togP(key){ if (openP.has(key)) openP.delete(key); else openP.add(key); render(); }
+function permCount(r){ if (r.perms.includes("all")) return "الكل"; const n = r.perms.filter(k => k !== "all").length; return n ? String(n) : "بدون"; }
+// v18: a symbol or an emoji next to a name (symbols: the map's own font; emoji: the emoji font)
+const SYMS = ["★","☆","♛","♚","♕","♔","✦","✧","❖","◆","◇","♥","♡","♦","♣","♠","✿","❀","☀","☾","☽","⚡","✪","✯","✰","⚜","♞","♟","✔","☘","☯","♪","♫","☕","⚓","❤","❣","➤","⚔","⚑","✈","❄","❅","☂","☃","⚫","⚪","☠"];
+const EMOJI = ["👑","💎","🔥","⭐","🌟","✨","🏆","🎖","🦅","🐺","🦁","🐎","🌙","🌴","🎮","🎧","🎤","📻","💜","💙","💚","🧡","💛","🖤","🤍","😎","😈","👻","💀","🚀","⚽","🎯"];
+let emoPath = null;
+function emo(path, btn){
+  const p = $("emoPop"); emoPath = path;
+  const cell = x => `<span role="button" tabindex="0" onclick="emoAdd('${x}')" onkeydown="if(event.key==='Enter')emoAdd('${x}')">${x}</span>`;
+  p.innerHTML = `<b>رموز</b><div class="g">${SYMS.map(cell).join("")}</div><b>إيموجي</b><div class="g">${EMOJI.map(cell).join("")}</div>
+    <p class="hint" style="margin:0">ينضاف بعد الاسم. تقدر بعد تكتب أي رمز أو إيموجي من الكيبورد في خانة الاسم.</p>`;
+  p.classList.remove("hidden");
+  const r = btn.getBoundingClientRect(), w = p.offsetWidth, h = p.offsetHeight;
+  let x = r.left, y = r.bottom + 6;
+  if (x + w > innerWidth - 8) x = innerWidth - w - 8;
+  if (x < 8) x = 8;
+  if (y + h > innerHeight - 8) y = Math.max(8, r.top - h - 6);
+  p.style.left = x + "px"; p.style.top = y + "px";
+}
+function emoAdd(x){
+  const o = emoPath ? obj(emoPath) : null; if (!o) return;
+  const n = String(o.name || "").replace(/\s+$/, "");
+  o.name = n ? n + " " + x : x;
+  $("emoPop").classList.add("hidden"); render();
+}
+document.addEventListener("click", e => { const p = $("emoPop"); if (p && !p.classList.contains("hidden") && !p.contains(e.target) && !e.target.closest(".emobtn")) p.classList.add("hidden"); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && $("emoPop")) $("emoPop").classList.add("hidden"); });
 function togPerm(i, k){
   const r = M.ranks[i];
   if (k !== "all" && k !== "walls" && r.perms.includes("all")){
@@ -604,7 +653,7 @@ function renderClans(){
   M.clans.map((c,i) => `
   <div class="item" style="flex-direction:column;align-items:stretch">
     <div class="row">${emblem(c, "clans." + i)}
-      <label class="f">الاسم<input value="${esc(c.name)}" oninput="setv('clans.${i}','name',this.value)"></label>
+      <label class="f">الاسم<span class="namewrap"><input value="${esc(c.name)}" oninput="setv('clans.${i}','name',this.value)"><button class="emobtn" title="أضف رمز أو إيموجي للاسم" onclick="emo('clans.${i}',this)">😊</button></span></label>
       <label class="f">الوسم<input value="${esc(c.tag)}" maxlength="8" style="width:90px" oninput="setv('clans.${i}','tag',this.value)"></label>
       <label class="f">اللون<input type="color" value="${c.color}" onchange="setv('clans.${i}','color',this.value)"></label>
       ${ringBtn("clan:" + c.key)}
@@ -612,7 +661,7 @@ function renderClans(){
     <div class="sub-list"><div class="row" style="justify-content:space-between"><span class="hint">رتب الكلان (اسحب للترتيب)</span><button class="sm" onclick="M.clans[${i}].ranks.push({key:uid('k'),name:'رتبة',color:'#FFFFFF'});render()">＋ رتبة كلان</button></div>
       <div ${dragList("clans." + i + ".ranks")}>${c.ranks.map((r,j) => `
         <div class="item" draggable="true" ondragstart="dragStart(event,'clans.${i}.ranks',${j})"><span class="handle">⠿</span>
-          <input value="${esc(r.name)}" oninput="setv('clans.${i}.ranks.${j}','name',this.value)"><input type="color" value="${r.color}" onchange="setv('clans.${i}.ranks.${j}','color',this.value)">
+          <span class="namewrap"><input value="${esc(r.name)}" oninput="setv('clans.${i}.ranks.${j}','name',this.value)"><button class="emobtn" title="أضف رمز أو إيموجي للاسم" onclick="emo('clans.${i}.ranks.${j}',this)">😊</button></span><input type="color" value="${r.color}" onchange="setv('clans.${i}.ranks.${j}','color',this.value)">
           <button class="del" onclick="del('clans.${i}.ranks',${j})">حذف</button></div>`).join("")}</div></div>
   </div>`).join("") + (M.clans.length ? "" : `<p class="hint">ما فيه كلانات بعد.</p>`);
 }
