@@ -5,7 +5,7 @@
 PERMV|2
 RANK|owner|Community|60|#FFD54D|crown|all|-1
 RANK|manager|Owner|50|#FF4D6D|gem|warn,clearwarn,kick,release,ban,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,podaccess,admaccess,radioadd,vip,coins,selfcoins,adminroom,all,calls,staffview,screens,boards,gamereset|-1
-RANK|mod|Co Owner|40|#3EA0FF|badge|warn,clearwarn,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,adminroom,calls,staffview,screens,boards,gamereset,freeze,kick,ban,release,items,coins,selfcoins,vip,podaccess,admaccess,tp,access|-1
+RANK|mod|Co Owner|40|#3EA0FF|badge|warn,clearwarn,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,adminroom,calls,staffview,screens,boards,gamereset,freeze,kick,ban,release,items,selfcoins,vip,podaccess,admaccess,returnitems,tp,access|-1
 RANK|admin|star|30|#A35CFF|star|bring,goto,pullto,carry,places,pullall,freeze,jail,unjail,mute,unmute,warn,clearwarn,kick,ban,release,coins,selfcoins,vip,podaccess,admaccess,items,returnitems,givefly,givemic,mic,radio,adminroom,podcast,banroom,viprooms,calls,staffview,screens,videolink,boards,boardclear,gamereset,store,tp,access|-1
 RANK|helper|مساعد|20|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset|-1
 RANK|vip|عضو مميز|10|#FFB86B|gem|podcast|-1
