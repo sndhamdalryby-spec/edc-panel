@@ -9,7 +9,7 @@ RANK|admin|star|70|#A35CFF|star|bring,goto,pullto,carry,places,pullall,freeze,ja
 RANK|mod|Co Owner|60|#3EA0FF|badge|warn,clearwarn,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,adminroom,calls,staffview,screens,boards,gamereset,freeze,kick,ban,release,items,selfcoins,podaccess,admaccess,returnitems,givefly,givemic,mic,radio,radioctl,banroom,viprooms,walls,boardclear,store,videolink,tp,access|-1
 RANK|vip|عضو مميز|50|#FFB86B|gem|podcast|-1
 RANK|helper|مساعد|40|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset,jail,unjail,mute,unmute,freeze,goto,radio,tp|-1
-RANK|rrh9pd|Admin|30|#2E4084|bolt|warn,jail,clearwarn,adminroom,calls|-1
+RANK|rrh9pd|Admin|30|#2E4084|bolt|warn,jail,clearwarn,adminroom,calls,mute,unmute|-1
 RANK|riswag|رتبة جديدة|20|#E0A050|star|warn|-1
 RANK|ren1q1|رتبة جديدة|10|#E0A050|star|warn|-1
 CLAN|cz0h8d|𝑽 𝑶 𝑰 𝑫|#AB97D8|VOD|0
