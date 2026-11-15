@@ -28,4 +28,4 @@ RING|rank:mod|#FFFFFF|shoulder|3|100|-1
 RING|clan:cz0h8d|#FFFFFF|shoulder|4|100|-1
 RING|rank:helper|#FFFFFF|shoulder|5|100|-1
 ATLAS|8|8|mw6z8fqq
-RINGS|1|16|mwh9clto
+RINGS|1|16|mwhbahz8
