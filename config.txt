@@ -10,8 +10,8 @@ RANK|mod|Co Owner|30|#3EA0FF|badge|warn,clearwarn,jail,unjail,bring,goto,pullto,
 RANK|helper|مساعد|20|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset|-1
 RANK|vip|عضو مميز|10|#FFB86B|gem|podcast|-1
 CLAN|cz0h8d|𝑽 𝑶 𝑰 𝑫|#AB97D8|VOD|-1
-CRANK|cz0h8d|keseni|قائد|20|#FFD54D
-CRANK|cz0h8d|ks6s5e|عضو|10|#FFFFFF
+CRANK|cz0h8d|ks6s5e|عضو|20|#FFFFFF
+CRANK|cz0h8d|keseni|قائد|10|#FFD54D
 USER|NΛD ~|helper||
 USER|RÚRA|mod||
 USER|al3grap|owner||
