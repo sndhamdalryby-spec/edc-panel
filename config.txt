@@ -27,4 +27,4 @@ RING|rank:admin|#FFFFFF|shoulder|2|110|52
 RING|rank:mod|#FFFFFF|shoulder|3|100|-1
 RING|clan:cz0h8d|#FFFFFF|shoulder|4|100|-1
 ATLAS|8|8|mw6z8fqq
-RINGS|1|16|mwh86l3e
+RINGS|1|16|mwh889nw
