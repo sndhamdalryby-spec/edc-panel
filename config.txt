@@ -10,7 +10,7 @@ RANK|mod|Co Owner|70|#3EA0FF|badge|warn,clearwarn,jail,unjail,bring,goto,pullto,
 RANK|vip|عضو مميز|60|#FFB86B|gem|podcast|-1
 RANK|helper|مساعد|50|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset,jail,unjail,mute,unmute,freeze,goto,radio,tp|-1
 RANK|rrh9pd|Admin|40|#2E4084|bolt|warn,jail,clearwarn,adminroom,calls,mute,unmute|-1
-RANK|riswag|Moderator|30|#E0A050|shield|warn,goto,tp|-1
+RANK|riswag|Moderator|30|#E0A050|shield|warn,goto,jail,unjail,tp|-1
 RANK|ren1q1|Contributor|20|#E0A050|star|warn|-1
 RANK|rchtot|Trainee|10|#E0A050|star|warn,adminroom|-1
 CLAN|cz0h8d|𝑽 𝑶 𝑰 𝑫|#AB97D8|VOD|0
