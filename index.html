@@ -202,7 +202,7 @@ function toText(atlasVer, ringsVer){
   const n = M.ranks.length;
   M.ranks.forEach((r,i) => { const ps = compat(r.perms); L.push(["RANK",r.key,clean(r.name),(n-i)*10,r.color.toUpperCase(),r.icon,(ps.length?ps.join(","):"none"),(r.cell??-1)].join("|")); });
   M.clans.forEach(c => {
-    L.push(["CLAN",c.key,clean(c.name),c.color.toUpperCase(),clean(c.tag),(c.cell??-1),clean(c.gid)].join("|"));
+    L.push(["CLAN",c.key,clean(c.name),c.color.toUpperCase(),clean(c.tag),(c.cell??-1),(gidOf(c) || clean(c.gid))].join("|"));
     const k = c.ranks.length;
     c.ranks.forEach((r,i) => L.push(["CRANK",c.key,r.key,clean(r.name),(k-i)*10,r.color.toUpperCase(),
       ((r.perms || []).filter(x => !CLAN_BLOCK.includes(x)).join(",") || "none"),(r.cell??-1),(r.roles || []).map(clean).join(",")].join("|")));
@@ -360,7 +360,8 @@ async function encodePNG(w, h, rgba){
 
 // ---------------------------------------------------------------- GitHub
 function cfg(){ return {o:$("owner").value.trim(), r:$("repo").value.trim(), b:$("branch").value.trim()||"main", t:$("token").value.trim()}; }
-const PANEL_VER = 22;   // v22: clans = VRChat groups (link, roles, clan ranks linked to roles, own permissions)
+const PANEL_VER = 23;   // v23: «استيراد البيانات» - the group straight from VRChat through «مساعد القروبات» (no files)
+// v22: clans = VRChat groups (link, roles, clan ranks linked to roles, own permissions)
 // v21: + "boardlog" (whiteboards: who drew / who wiped; part of "all")
 const SOLO = ["walls","ghost","hours"];   // v19: permissions that are never part of "all" - ticked on their own (v20: + hours)
 function saveCfg(){
@@ -666,7 +667,8 @@ function togPerm(i, k){
   const p = r.perms; const j = p.indexOf(k); if (j >= 0) p.splice(j, 1); else p.push(k); render();
 }
 // ---------------------------------------------------------------- v22: clans = VRChat groups
-// A clan is a VRChat group: paste its link, run "تحديث القروبات" on the PC (EDC_ClanSync), import its file here. Each
+// A clan is a VRChat group: paste its link and press «استيراد البيانات» (v23: straight from VRChat through the helper
+// «مساعد القروبات» = EDC_ClanSync on the PC; v22 read a file it wrote). Each
 // clan rank is linked to roles of the group and has its own permissions, emblem and ring. In an instance opened by a
 // member of the clan (the map asks him if he is in several clans), whoever has a linked role gets that clan rank -
 // only in that instance. Gifts that stay with a player everywhere are for the map's own ranks only.
@@ -679,15 +681,15 @@ function gidHint(c){
   const v = String(c.gid || "").trim();
   if (!v) return `<span class="gwarn">الصق رابط القروب من موقع VRChat (فيه grp_…) أو رابط vrc.group/ABCD.1234</span>`;
   if (gidOf(c)) return `<span class="gok">✓ رابط القروب واضح</span>`;
-  if (/[A-Za-z0-9]{3,6}\.\d{4}/.test(v)) return `<span class="gok">✓ رابط مختصر — برنامج التحديث يحوّله لرقم القروب</span>`;
+  if (/[A-Za-z0-9]{3,6}\.\d{4}/.test(v)) return `<span class="gok">✓ رابط مختصر — الاستيراد يحوّله لرقم القروب</span>`;
   return `<span class="gwarn">الرابط مو واضح — لازم يكون فيه grp_ أو يكون مثل vrc.group/ABCD.1234</span>`;
 }
 function fmtAt(s){ const d = new Date(s); return isNaN(d) ? "—" : d.toLocaleString("ar-SA-u-nu-latn", {dateStyle:"medium", timeStyle:"short"}); }
 function clanInfo(c){
   const g = CS[gidOf(c)];
-  if (!g) return `<div class="gstat">بيانات القروب ما وصلت بعد: شغّل <b>تحديث القروبات</b> على كمبيوترك، بعدين اضغط <b>استيراد بيانات القروبات</b> فوق.</div>`;
-  const miss = g.members > g.seen ? ` <span class="gwarn">(طلع لنا ${g.seen} بس: اطلب منهم يعطون حسابك صلاحية «View All Members»)</span>` : "";
-  return `<div class="gstat">القروب: <b><bdi>${esc(g.name)}</bdi></b>${g.code ? " (<bdi>" + esc(g.code) + "</bdi>)" : ""} — الأعضاء: <b>${g.members}</b>${miss} — رتب القروب: <b>${g.roles.length}</b> — آخر تحديث: <bdi>${esc(fmtAt(g.at))}</bdi></div>`;
+  if (!g) return `<div class="gstat">بيانات القروب ما وصلت بعد: اضغط <b>استيراد البيانات</b> (من الكمبيوتر اللي فيه «مساعد القروبات» مفتوح).</div>`;
+  const miss = g.members > g.seen && g.seen ? ` <span class="gwarn">(طلع لنا ${g.seen} بس: اطلب منهم يعطون حسابك صلاحية «View All Members»)</span>` : "";
+  return `<div class="gstat">القروب: <b><bdi>${esc(g.name)}</bdi></b>${g.code ? " (<bdi>" + esc(g.code) + "</bdi>)" : ""}${g.owner ? " — الأونر: <b><bdi>" + esc(g.owner) + "</bdi></b>" : ""} — الأعضاء: <b>${g.members}</b>${miss} — رتب القروب: <b>${g.roles.length}</b>${g.at ? " — آخر تحديث: <bdi>" + esc(fmtAt(g.at)) + "</bdi>" : ""}</div>`;
 }
 function addClan(){
   M.clans.push({key:uid('c'),name:'كلان جديد',tag:'TAG',color:'#3EA0FF',img:null,gid:'',
@@ -736,12 +738,12 @@ function permChipsC(i, j){
     <div class="chips"><span class="chip ${ps.includes("all") ? "on" : ""}" onclick="togCPerm(${i},${j},'all')">كل الصلاحيات (داخل انستنس الكلان)</span><span class="chip" onclick="M.clans[${i}].ranks[${j}].perms=[];render()">مسح الكل</span></div></div>`;
 }
 function renderClans(){
-  $("t-clans").innerHTML = `<div class="row" style="justify-content:space-between"><b>الكلانات (قروبات VRChat)</b><span class="row"><button onclick="$('jsonpick').click()">⬆ استيراد بيانات القروبات</button><button onclick="addClan()">＋ كلان</button></span></div>
+  $("t-clans").innerHTML = `<div class="row" style="justify-content:space-between"><b>الكلانات (قروبات VRChat)</b><span class="row"><button onclick="refreshAll(false)" ${importing ? "disabled" : ""} title="يجيب أعضاء كل القروبات من جديد">🔄 حدّث الأعضاء</button><button onclick="addClan()">＋ كلان</button></span></div>
   <div class="how"><b style="font-family:var(--kufi);color:var(--gold)">كيف تشتغل</b><ol>
-    <li>كل كلان = <b>قروب في VRChat</b>. الصق رابط القروب في الكلان.</li>
-    <li>على كمبيوترك شغّل <b>تحديث القروبات</b> (EDC_ClanSync في مجلد EDC_Panel)، وبيطلع لك ملف EDC_Clans.json.</li>
-    <li>اضغط <b>استيراد بيانات القروبات</b> واختر الملف. بيطلع لك عدد الأعضاء ورتب القروب.</li>
-    <li>سوّ رتب الكلان واربط كل وحدة برتب القروب، واختر صلاحياتها وشعارها وحلقتها.</li>
+    <li>على الكمبيوتر افتح <b>«مساعد القروبات»</b> (EDC_ClanSync في مجلد EDC_Panel) وخله مفتوح. أول مرة بس يطلب دخولك في VRChat، وهو يفتح لك الداشبورد.</li>
+    <li>كل كلان = <b>قروب في VRChat</b>: الصق رابط القروب واضغط <b>استيراد البيانات</b>. يجيك على طول اسم القروب وصورته والأونر ورتبه وأعضاؤه.</li>
+    <li>سوّ رتب الكلان (أو اضغط <b>رتب من رتب القروب</b>) واربط كل وحدة برتب القروب، واختر صلاحياتها وشعارها وحلقتها. كل شي ينحفظ لحاله.</li>
+    <li>لما يتغير أعضاء القروب: افتح المساعد والداشبورد على الكمبيوتر، والأعضاء يتحدثون لحالهم (أو اضغط <b>حدّث الأعضاء</b>).</li>
     <li>رتب الكلان تشتغل <b>بس داخل انستنس الكلان</b>: الماب يعرفه من اللي فتح الانستنس. لو اللي فتحه في أكثر من كلان، الماب يسأله، وإدارتك العامة تقدر تغيّره من لوحة الإدارة.</li></ol></div>` +
   M.clans.map((c,i) => {
     const k = c.ranks.length;
@@ -753,9 +755,10 @@ function renderClans(){
       <label class="f">اللون<input type="color" value="${c.color}" onchange="setv('clans.${i}','color',this.value)"></label>
       ${ringBtn("clan:" + c.key)}
       <button class="del" onclick="if(confirm('تحذف الكلان «${esc(c.name).replace(/'/g, "")}» ورتبه؟'))del('clans',${i})">حذف الكلان</button></div>
-    <label class="f" style="margin-top:8px">رابط القروب في VRChat<input class="gid" value="${esc(c.gid || "")}" placeholder="https://vrchat.com/home/group/grp_…" oninput="setv('clans.${i}','gid',this.value)" onchange="render()"></label>
+    <div class="row" style="margin-top:8px;align-items:flex-end"><label class="f" style="flex:1">رابط القروب في VRChat<input class="gid" value="${esc(c.gid || "")}" placeholder="https://vrchat.com/home/group/grp_…" oninput="setv('clans.${i}','gid',this.value)" onchange="render()"></label>
+      <button class="pri" onclick="importGroup(${i})" ${importing ? "disabled" : ""}>${importing === i + 1 ? "⏳ جاري الاستيراد…" : "⬇ استيراد البيانات"}</button></div>
     <div class="gstat">${gidHint(c)}</div>${clanInfo(c)}
-    <div class="sub-list"><div class="row" style="justify-content:space-between;margin-top:8px"><span class="hint">رتب الكلان (اسحب للترتيب، الأعلى أقوى)</span><button class="sm" onclick="addCRank(${i})">＋ رتبة كلان</button></div>
+    <div class="sub-list"><div class="row" style="justify-content:space-between;margin-top:8px"><span class="hint">رتب الكلان (اسحب للترتيب، الأعلى أقوى)</span><span class="row">${CS[gidOf(c)] && CS[gidOf(c)].roles.length ? `<button class="sm" onclick="rolesToRanks(${i})" title="رتبة كلان لكل رتبة في القروب ما انربطت، مربوطة فيها">＋ رتب من رتب القروب</button>` : ""}<button class="sm" onclick="addCRank(${i})">＋ رتبة كلان</button></span></div>
       <div ${dragList("clans." + i + ".ranks")}>${c.ranks.map((r,j) => `
         <div class="item" draggable="true" ondragstart="dragStart(event,'clans.${i}.ranks',${j})"><span class="handle">⠿</span>${emblem(r, "clans." + i + ".ranks." + j)}
           <div class="lv">مستوى ${(k-j)*10}</div>
@@ -815,24 +818,142 @@ async function importSync(txt){
   await pushSync(errs);
 }
 // roster.txt (what the map reads: hashed names per group / role) + clans.json (what this page shows)
-async function pushSync(errs){
+async function pushSync(errs, quiet){
   const c = cfg();
-  if (!c.t){ setConn(false); say("الصق التوكن واضغط اتصال، بعدين استورد الملف مرة ثانية", "bad"); return; }
+  if (!c.t){ if (!quiet){ setConn(false); say("الصق التوكن واضغط اتصال، بعدين اضغط «استيراد البيانات» مرة ثانية", "bad"); } return; }
   try {
-    say("أرفع بيانات القروبات…");
-    const old = await ghFile("roster.txt");
-    if (old){ const o = parseRoster(utf8b64(old)); Object.keys(o).forEach(k => { if (!ROS[k]) ROS[k] = o[k]; }); }
-    const keep = [...new Set(M.clans.map(gidOf).filter(Boolean))];
-    const ver = Date.now().toString(36), at = new Date().toISOString();
-    const L = ["# Everyday Map — clan rosters: VRChat names are hashed, no names in this file. Written by the control panel.", ["ROSTER", ver, at].join("|")];
+    if (!quiet) say("أرفع بيانات القروبات…");
+    const old = await ghFile("roster.txt"), oldTxt = old ? utf8b64(old) : "";
+    if (oldTxt){ const o = parseRoster(oldTxt); Object.keys(o).forEach(k => { if (!ROS[k]) ROS[k] = o[k]; }); }
+    const keep = [...new Set(M.clans.map(gidOf).filter(Boolean))].sort();
+    const ver = Date.now().toString(36), at = new Date().toISOString(), body = [];
     keep.forEach(id => { const r = ROS[id]; if (!r) return;
-      L.push(["GALL", id, "\t" + r.all.join("\t") + "\t"].join("|"));
-      Object.keys(r.by).forEach(rid => L.push(["GROLE", id, rid, "\t" + r.by[rid].join("\t") + "\t"].join("|"))); });
-    await putFile("roster.txt", b64utf8(L.join("\n") + "\n"), "panel: clan rosters " + ver);
+      body.push(["GALL", id, "\t" + [...r.all].sort().join("\t") + "\t"].join("|"));
+      Object.keys(r.by).sort().forEach(rid => body.push(["GROLE", id, rid, "\t" + [...r.by[rid]].sort().join("\t") + "\t"].join("|"))); });
+    const same = !!oldTxt && oldTxt.split(/\r?\n/).filter(l => /^G(ALL|ROLE)\|/.test(l)).join("\n") === body.join("\n");
+    if (quiet && same) return;                       // the auto refresh found nothing new
+    if (!same){
+      const L = ["# Everyday Map — clan rosters: VRChat names are hashed, no names in this file. Written by the control panel.", ["ROSTER", ver, at].join("|")].concat(body);
+      await putFile("roster.txt", b64utf8(L.join("\n") + "\n"), "panel: clan rosters " + ver);
+    }
     const cj = {v:1, at, groups:{}}; keep.forEach(id => { if (CS[id]) cj.groups[id] = CS[id]; });
     await putFile("clans.json", b64utf8(JSON.stringify(cj)), "panel: clans " + ver);
-    say("تم ✓ وصلت بيانات القروبات للماب. الحين اربط رتب كل كلان برتب قروبه." + (errs && errs.length ? " ملاحظة: " + errs.join("، ") : ""), "ok");
-  } catch(e){ say("تعذر رفع بيانات القروبات: " + e.message, "bad"); }
+    const note = errs && errs.length ? " ملاحظة: " + errs.join("، ") : "";
+    say(quiet ? "✓ تحدّث أعضاء القروبات ووصلوا للماب" + note : "تم ✓ وصلت بيانات القروب للماب. الحين اربط رتب الكلان برتب القروب واختر صلاحياتها وشعارها." + note, errs && errs.length ? "bad" : "ok");
+  } catch(e){ if (!quiet) say("تعذر رفع بيانات القروبات: " + e.message, "bad"); }
+}
+// ---------------------------------------------------------------- v23: «مساعد القروبات» (EDC_ClanSync on the PC)
+// VRChat gives a group's name, picture, roles and members only to a logged-in account and never to other websites,
+// so the helper on the owner's PC (logged in as him, in its own window - no password ever here) answers this page on
+// 127.0.0.1 (ports 47811-47815). It sends names only as short codes (hashes).
+const HP_PORTS = [47811, 47812, 47813, 47814, 47815];
+const IS_PHONE = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+let hpPort = 0, importing = 0;
+async function hpPing(){
+  const order = hpPort ? [hpPort, ...HP_PORTS.filter(p => p !== hpPort)] : HP_PORTS;
+  for (let k = 0; k < order.length; k++){
+    const ac = new AbortController(), t = setTimeout(() => ac.abort(), k ? 4000 : 45000);   // the first may wait for the browser's "allow"
+    try {
+      const r = await fetch(`http://127.0.0.1:${order[k]}/api/ping`, {cache:"no-store", signal:ac.signal});
+      const js = await r.json();
+      if (js && js.app === "EDC"){ hpPort = order[k]; try { localStorage.setItem("edc_helper", "1"); } catch(e){} return js; }
+    } catch(e){}
+    finally { clearTimeout(t); }
+  }
+  hpPort = 0; return null;
+}
+async function hpJson(path){
+  if (!hpPort && !(await hpPing())) return null;
+  try { const r = await fetch(`http://127.0.0.1:${hpPort}${path}`, {cache:"no-store"}); return await r.json(); }
+  catch(e){ hpPort = 0; return null; }
+}
+async function hpImage(path){
+  const r = await fetch(`http://127.0.0.1:${hpPort}${path}`, {cache:"no-store"});
+  if (!r.ok) throw new Error("picture " + r.status);
+  const u = URL.createObjectURL(await r.blob());
+  try { return await loadImg(u); } finally { setTimeout(() => URL.revokeObjectURL(u), 2000); }
+}
+function hpMissing(){
+  say("ما لقيت «مساعد القروبات»: على الكمبيوتر افتح EDC_ClanSync.bat (في مجلد EDC_Panel) وخله مفتوح، وجرب مرة ثانية. لو المتصفح سألك يسمح للصفحة توصل لتطبيقات الجهاز اضغط «سماح».", "bad");
+}
+// the group's members (short codes) and who has which role
+async function pullMembers(id){
+  const m = await hpJson("/api/members?id=" + encodeURIComponent(id));
+  if (!m) return {ok:false, msg:"«مساعد القروبات» ما رد"};
+  if (!m.ok) return {ok:false, msg:m.msg || "ما قدرت أجيب الأعضاء"};
+  const hx = /^[0-9a-f]{8}$/, all = [...new Set((m.all || []).filter(h => hx.test(h)))], by = {};
+  Object.keys(m.byRole || {}).forEach(rid => { if (/^grol_/.test(rid)) by[rid] = [...new Set((m.byRole[rid] || []).filter(h => hx.test(h)))]; });
+  ROS[id] = {all, by};
+  const g = CS[id] || (CS[id] = {name:"", code:"", owner:"", members:0, seen:0, roles:[]});
+  g.seen = all.length; g.members = Math.max(+m.members || 0, all.length); g.at = new Date().toISOString();
+  (g.roles || []).forEach(r => { r.n = (by[r.id] || []).length; });
+  return {ok:true};
+}
+// «استيراد البيانات»: the group's name, picture, owner, roles and members, straight from VRChat
+async function importGroup(i){
+  if (importing) return;
+  const c = M.clans[i]; if (!c) return;
+  const link = String(c.gid || "").trim();
+  if (!link){ say("الصق رابط القروب في خانة الرابط أول", "bad"); return; }
+  if (IS_PHONE){ say("الاستيراد يشتغل من الكمبيوتر: افتح هناك «مساعد القروبات» (EDC_ClanSync.bat في مجلد EDC_Panel). الرابط انحفظ.", "bad"); return; }
+  importing = i + 1; render();
+  try {
+    say("أكلم «مساعد القروبات»…");
+    const pg = await hpPing();
+    if (!pg){ hpMissing(); return; }
+    if (!pg.user){ say("«مساعد القروبات» مفتوح بس ما سجلت دخولك فيه: اضغط «تسجيل الدخول» في نافذته وجرب مرة ثانية", "bad"); return; }
+    say("أجيب بيانات القروب من VRChat…");
+    const g = await hpJson("/api/group?link=" + encodeURIComponent(link));
+    if (!g){ hpMissing(); return; }
+    if (!g.ok){ say(g.msg || "ما قدرت أجيب بيانات القروب", "bad"); return; }
+    const other = M.clans.find((x, q) => q !== i && gidOf(x) === g.id);
+    if (other){ say("هذا القروب مربوط من قبل بالكلان «" + other.name + "»", "bad"); return; }
+    c.gid = g.id;
+    if (clean(g.name)) c.name = clean(g.name);
+    if ((!c.tag || c.tag === "TAG") && g.shortCode) c.tag = clean(g.shortCode).slice(0, 8);
+    const was = CS[g.id] || {};
+    CS[g.id] = {name:String(g.name || ""), code:String(g.code || ""), owner:String(g.owner || ""), members:+g.members || 0,
+                seen:was.seen || 0, at:was.at || "", roles:(g.roles || []).map(r => ({id:String(r.id), name:String(r.name || r.id), n:0}))};
+    if (g.icon){ try { c.img = squareCell(await hpImage("/api/icon?id=" + encodeURIComponent(g.id))); } catch(e){} }
+    render();
+    say("أجيب أعضاء القروب ورتبهم… (القروب الكبير ياخذ شوي)");
+    const m = await pullMembers(g.id);
+    render();
+    if (!m.ok){ say(m.msg, "bad"); return; }
+    await pushSync([], false);
+  } finally { importing = 0; render(); }
+}
+// «حدّث الأعضاء» (and by itself when the page opens on the PC with the helper running)
+async function refreshAll(auto){
+  const ids = [...new Set(M.clans.map(gidOf).filter(Boolean))];
+  if (!ids.length){ if (!auto) say("ما فيه كلان مربوط بقروب بعد: الصق رابط القروب واضغط «استيراد البيانات»", "bad"); return; }
+  if (IS_PHONE){ if (!auto) say("تحديث الأعضاء يشتغل من الكمبيوتر اللي فيه «مساعد القروبات»", "bad"); return; }
+  if (importing) return;
+  importing = -1; if (!auto) render();
+  try {
+    const pg = await hpPing();
+    if (!pg){ if (!auto) hpMissing(); return; }
+    if (!pg.user){ if (!auto) say("سجّل دخولك في نافذة «مساعد القروبات» أول", "bad"); return; }
+    const errs = [];
+    for (const id of ids){
+      if (!auto) say("أحدّث أعضاء " + ((CS[id] || {}).name || id) + "…");
+      const r = await pullMembers(id);
+      if (!r.ok) errs.push(((CS[id] || {}).name || id) + ": " + r.msg);
+    }
+    await pushSync(errs, auto);
+  } finally { importing = 0; render(); }
+}
+// one clan rank for every group role that has none yet, linked to it (untouched starter ranks go)
+function rolesToRanks(i){
+  const c = M.clans[i], g = CS[gidOf(c)];
+  if (!g || !(g.roles || []).length){ say("استورد بيانات القروب أول", "bad"); return; }
+  const linked = new Set(c.ranks.flatMap(r => r.roles || []));
+  const starter = r => !(r.roles || []).length && !(r.perms || []).length && !r.img && !ringOf("crank:" + c.key + "." + r.key) && ["قائد","عضو","رتبة"].includes(String(r.name).trim());
+  c.ranks = c.ranks.filter(r => !starter(r));
+  let n = 0;
+  g.roles.forEach(ro => { if (linked.has(ro.id)) return; c.ranks.push({key:uid('k'), name:clean(ro.name) || 'رتبة', color:'#FFFFFF', img:null, perms:[], roles:[ro.id]}); n++; });
+  render();
+  say(n ? "انضافت " + n + " رتبة، كل وحدة مربوطة برتبة القروب اللي بنفس اسمها. الحين اختر صلاحياتها وشعارها." : "كل رتب القروب مربوطة من قبل", "ok");
 }
 function permText(key){
   const r = M.ranks.find(x => x.key === key); if (!r) return "—";
@@ -1078,6 +1199,10 @@ async function renderText(){
   ["owner","repo","branch"].forEach(id => $(id).addEventListener("change", saveCfg));
   if (location.hostname.endsWith("github.io")) $("setup").style.display = "none";
   showUrls(); defaults(); render(); setConn(!!t);
-  if ($("owner").value && $("repo").value) loadRemote().then(() => { if (t) selfUpdate(); });
+  if ($("owner").value && $("repo").value) loadRemote().then(() => {
+    if (t) selfUpdate();
+    let used = false; try { used = localStorage.getItem("edc_helper") === "1"; } catch(e){}
+    if (t && used && !IS_PHONE && M.clans.some(c => gidOf(c))) refreshAll(true);
+  });
 })();
 </script></body></html>
