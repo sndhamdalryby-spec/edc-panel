@@ -10,9 +10,9 @@ RANK|mod|Co Owner|70|#3EA0FF|badge|warn,clearwarn,jail,unjail,bring,goto,pullto,
 RANK|vip|عضو مميز|60|#FFB86B|gem|podcast|-1
 RANK|rrh9pd|Admin|50|#2E4084|bolt|warn,jail,clearwarn,adminroom,calls,mute,unmute|-1
 RANK|riswag|Moderator|40|#E0A050|shield|warn,goto,jail,unjail,mute,unmute,clearwarn,kick,release,adminroom,calls,boardclear,freeze,banroom,tp|-1
-RANK|helper|مساعد|30|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset,jail,unjail,mute,unmute,freeze,goto,radio,tp|-1
-RANK|ren1q1|Contributor|20|#E0A050|star|warn,freeze,goto,bring,jail,unjail,mute,unmute,clearwarn,kick,ban,release,items,returnitems,givemic,mic,adminroom,banroom,podcast,calls,screens,boardclear,gamereset,store,radio,admaccess,tp,access|-1
-RANK|rchtot|Trainee|10|#E0A050|star|warn,adminroom,clearwarn|-1
+RANK|ren1q1|Contributor|30|#E0A050|star|warn,freeze,goto,bring,jail,unjail,mute,unmute,clearwarn,kick,ban,release,items,returnitems,givemic,mic,adminroom,banroom,podcast,calls,screens,boardclear,gamereset,store,radio,admaccess,tp,access|-1
+RANK|rchtot|Trainee|20|#E0A050|star|warn,adminroom,clearwarn|-1
+RANK|helper|مساعد|10|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset,jail,unjail,mute,unmute,freeze,goto,radio,tp|-1
 CLAN|cz0h8d|𝑽 𝑶 𝑰 𝑫|#AB97D8|VOD|0
 CRANK|cz0h8d|keseni|NΛD ~|30|#FFD54D
 CRANK|cz0h8d|ks6s5e|عضو|20|#FFFFFF
