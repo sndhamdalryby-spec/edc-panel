@@ -18,7 +18,7 @@ CRANK|cz0h8d|keseni|NΛD ~|30|#FFD54D
 CRANK|cz0h8d|ks6s5e|عضو|20|#FFFFFF
 CRANK|cz0h8d|kbj5dn|رتبة|10|#FFFFFF
 USER|VoidkLo|helper||
-USER|Exit a5f3|admin||
+USER|Exit a5f3|mod||
 USER|56yt|admin||
 USER|NΛD ~|helper||
 USER|RÚRA|mod||
