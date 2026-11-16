@@ -13,6 +13,9 @@ RANK|rrh9pd|Admin|40|#2E4084|bolt|warn,jail,clearwarn,adminroom,calls,mute,unmut
 RANK|riswag|Moderator|30|#E0A050|shield|warn,goto,jail,unjail,mute,unmute,clearwarn,kick,release,adminroom,calls,boardclear,freeze,banroom,tp|-1
 RANK|ren1q1|Contributor|20|#E0A050|star|warn,freeze,goto,bring,jail,unjail,mute,unmute,clearwarn,kick,ban,release,items,returnitems,givemic,mic,adminroom,banroom,podcast,calls,screens,boardclear,gamereset,store,radio,admaccess,tp,access|-1
 RANK|rchtot|Trainee|10|#E0A050|star|warn,adminroom,clearwarn|-1
+CLAN|culd61|كلان جديد|#3EA0FF|TAG|-1|
+CRANK|culd61|kzcbxu|قائد|20|#FFD54D|none|-1|
+CRANK|culd61|kj8rsg|عضو|10|#FFFFFF|none|-1|
 USER|Yzn?|admin||
 USER|zyad_12|helper||
 USER|Cito7|mod||
