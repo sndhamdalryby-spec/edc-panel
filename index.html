@@ -128,11 +128,11 @@ const ICON_NAMES = ["crown","shield","star","badge","gem","mic","heart","bolt","
 const PERM_GROUPS = [
   ["قائمة الإدارة — التنقل", [["bring","اسحبه عندي"],["goto","روح له"],["pullto","اسحبه لشخص"],["carry","احمله (VR)"],["places","النقل للأماكن (انتقل إلى)"],["pullall","سحب جماعي (الكل / الإدارة / الأعضاء)"],["freeze","تجميد وفك التجميد"]]],
   ["قائمة الإدارة — السجن والعقوبات", [["jail","سجن"],["unjail","إفراج من السجن"],["mute","كتم"],["unmute","فك الكتم"],["warn","تحذير"],["clearwarn","إزالة التحذيرات"],["kick","طرد لغرفة الحظر"],["ban","حظر من الجلسة"],["release","فك الطرد/الحظر"]]],
-  ["قائمة الإدارة — هدايا وصلاحيات", [["coins","إهداء عملات"],["selfcoins","إضافة عملات لمحفظته"],["vip","إهداء تذكرة VIP"],["podaccess","منح وسحب صلاحية البودكاست"],["admaccess","منح وسحب صلاحية غرفة الإدارة"]]],
+  ["قائمة الإدارة — هدايا وصلاحيات", [["coins","إهداء عملات"],["selfcoins","إضافة عملات لمحفظته"],["vip","إهداء تذكرة VIP"],["podaccess","منح وسحب صلاحية البودكاست"],["admaccess","منح وسحب صلاحية غرفة الإدارة"],["hours","تعديل ساعات اللاعب في الماب: زيادة ساعة / نقص ساعة (ما تدخل ضمن كل الصلاحيات)"]]],
   ["قائمة الإدارة — الأغراض والطيران والمايك", [["items","إسقاط أغراض اللاعب"],["returnitems","رجّع المرمي"],["givefly","أعطه طيران / اسحب الطيران"],["givemic","أعطه المايك / اسحب المايك"],["mic","مايك الإدارة (يسمعه الكل)"]]],
   ["الراديو", [["radio","إنشاء راديو: يفتح قناة برقمها ويدخلها"],["radioctl","التحكم بالراديو: كل القنوات، يدخل ويطلّع أي أحد، يقفل ويفتح، وإشعار لما أحد يدخل"],["radioadd","دخّله قناتي / طلّعه من قناتي"]]],
-  ["الأماكن", [["adminroom","دخول غرفة الإدارة"],["podcast","دخول البودكاست مجاناً"],["banroom","دخول غرفة الحظر"],["viprooms","دخول غرف VIP المحجوزة"],["walls","المرور من الجدران المخفية (ما تدخل ضمن كل الصلاحيات)"]]],
-  ["أدوات ثانية", [["calls","استقبال طلبات استدعاء الإدارة"],["staffview","يشوف حالة اللاعبين ووسم الجدد"],["screens","التحكم بالشاشات المقفلة"],["videolink","نسخ رابط الفيديو المشغّل"],["boards","الكتابة على السبورات الخاصة"],["boardclear","مسح السبورة كاملة"],["gamereset","ريست الألعاب (البلياردو)"],["store","الطيران والخشبة مجاناً"]]]
+  ["الأماكن", [["adminroom","دخول غرفة الإدارة"],["podcast","دخول البودكاست مجاناً"],["banroom","دخول غرفة الحظر"],["viprooms","دخول غرف VIP المحجوزة"],["walls","المرور من الجدران المخفية (ما تدخل ضمن كل الصلاحيات)"],["ghost","وضع الحر 👻 تعدّي كل الجدران والحدود — اضغط القفز ٣ مرات بسرعة (ما تدخل ضمن كل الصلاحيات)"]]],
+  ["أدوات ثانية", [["calls","استقبال طلبات استدعاء الإدارة"],["staffview","يشوف حالة اللاعبين ووسم الجدد"],["screens","التحكم بالشاشات المقفلة"],["videolink","نسخ رابط الفيديو المشغّل"],["boards","الكتابة على السبورات الخاصة"],["boardclear","مسح السبورة كاملة"],["boardlog","سجل السبورة: مين رسم ومين مسح، ويرجّع الرسم الممسوح (يشوفه هو بس)"],["gamereset","ريست الألعاب (البلياردو)"],["store","الطيران والخشبة مجاناً"]]]
 ];
 const PERMS = PERM_GROUPS.flatMap(g => g[1]).concat([["all","كل الصلاحيات"]]);
 // v17: one permission per option of the admin menu. An older config used group keys; they open up into the new ones
@@ -346,7 +346,8 @@ async function encodePNG(w, h, rgba){
 
 // ---------------------------------------------------------------- GitHub
 function cfg(){ return {o:$("owner").value.trim(), r:$("repo").value.trim(), b:$("branch").value.trim()||"main", t:$("token").value.trim()}; }
-const PANEL_VER = 18;
+const PANEL_VER = 21;   // v21: + "boardlog" (whiteboards: who drew / who wiped; part of "all")
+const SOLO = ["walls","ghost","hours"];   // v19: permissions that are never part of "all" - ticked on their own (v20: + hours)
 function saveCfg(){
   const c = cfg(); localStorage.setItem("edc_repo", JSON.stringify({o:c.o,r:c.r,b:c.b}));
   if (c.t) localStorage.setItem("edc_token", c.t);   // the token stays in this browser only, once entered it is never asked again
@@ -606,7 +607,7 @@ function renderRanks(){
     <button class="permbtn ${openP.has(r.key)?"on":""}" onclick="togP('${r.key}')">⚙ الصلاحيات <span class="cnt">${permCount(r)}</span></button>
     ${ringBtn("rank:" + r.key)}
     <button class="del" onclick="del('ranks',${i})">حذف</button>
-    ${openP.has(r.key) ? `<div class="pgs">${PERM_GROUPS.map(([g, list]) => `<div class="pg"><div class="pgt">${g}</div><div class="chips">${list.map(([k,t]) => `<span class="chip ${r.perms.includes(k)||(r.perms.includes("all")&&k!=="walls")?"on":""}" onclick="togPerm(${i},'${k}')">${t}</span>`).join("")}</div></div>`).join("")}
+    ${openP.has(r.key) ? `<div class="pgs">${PERM_GROUPS.map(([g, list]) => `<div class="pg"><div class="pgt">${g}</div><div class="chips">${list.map(([k,t]) => `<span class="chip ${r.perms.includes(k)||(r.perms.includes("all")&&!SOLO.includes(k))?"on":""}" onclick="togPerm(${i},'${k}')">${t}</span>`).join("")}</div></div>`).join("")}
       <div class="chips"><span class="chip ${r.perms.includes("all")?"on":""}" onclick="togPerm(${i},'all')">كل الصلاحيات</span><span class="chip" onclick="M.ranks[${i}].perms=[];render()">مسح الكل</span></div></div>` : ""}
   </div>`).join("") + `</div><p class="hint">اضغط المربع لرفع شعار خاص (صورة مربعة أفضل). بدون شعار يظهر الرمز المختار. الأعلى في القائمة يقدر يعاقب اللي تحته فقط.</p>`;
 }
@@ -641,9 +642,9 @@ document.addEventListener("click", e => { const p = $("emoPop"); if (p && !p.cla
 document.addEventListener("keydown", e => { if (e.key === "Escape" && $("emoPop")) $("emoPop").classList.add("hidden"); });
 function togPerm(i, k){
   const r = M.ranks[i];
-  if (k !== "all" && k !== "walls" && r.perms.includes("all")){
+  if (k !== "all" && !SOLO.includes(k) && r.perms.includes("all")){
     // "all" on: pressing one option keeps everything else and takes this one out
-    r.perms = PERMS.map(p => p[0]).filter(x => x !== "all" && x !== "walls" && x !== k).concat(r.perms.includes("walls") ? ["walls"] : []);
+    r.perms = PERMS.map(p => p[0]).filter(x => x !== "all" && !SOLO.includes(x) && x !== k).concat(SOLO.filter(x => r.perms.includes(x)));
     render(); return;
   }
   const p = r.perms; const j = p.indexOf(k); if (j >= 0) p.splice(j, 1); else p.push(k); render();
@@ -696,7 +697,7 @@ function renderUsers(){
 let UP = -1;
 function ovList(u){ if (!Array.isArray(u.perms)) u.perms = []; return u.perms; }
 function ovState(u, k){ const o = ovList(u); return o.includes("+" + k) ? 1 : (o.includes("-" + k) ? -1 : 0); }
-function rankHas(key, k){ const r = M.ranks.find(x => x.key === key); return !!r && (r.perms.includes(k) || (r.perms.includes("all") && k !== "walls")); }
+function rankHas(key, k){ const r = M.ranks.find(x => x.key === key); return !!r && (r.perms.includes(k) || (r.perms.includes("all") && !SOLO.includes(k))); }
 function ovText(u){ const n = ovList(u).length; return n ? (n + " تعديل") : "تعديل"; }
 function openUp(i){ UP = i; $("upDlg").classList.remove("hidden"); renderUp(); }
 function closeUp(){ UP = -1; $("upDlg").classList.add("hidden"); render(); }
