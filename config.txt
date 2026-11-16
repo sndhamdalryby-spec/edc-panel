@@ -12,9 +12,9 @@ RANK|riswag|Moderator|30|#E0A050|flame|warn,goto,unmute,clearwarn,adminroom,call
 RANK|rchtot|Host|20|#E0A050|star|warn,adminroom,clearwarn,calls,goto,videolink,screens,boardclear,gamereset,podcast,staffview,tp|-1
 RANK|helper|NAD|10|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset,jail,unjail,mute,unmute,freeze,goto,radio,boardclear,tp|-1
 CLAN|caob41|Lost Island|#3EA0FF||-1
-CRANK|caob41|k8ged9|قائد|30|#FFD54D
-CRANK|caob41|kfds3p|عضو|20|#FFFFFF
-CRANK|caob41|kqvxtw|رتبة|10|#FFFFFF
+CRANK|caob41|kfds3p|عضو|30|#FFFFFF
+CRANK|caob41|kqvxtw|رتبة|20|#FFFFFF
+CRANK|caob41|k8ged9|قائد|10|#FFD54D
 USER|Cito7|mod||
 USER|VoidkLo|ren1q1||
 USER|Exit a5f3|mod||
