@@ -11,6 +11,9 @@ RANK|ren1q1|Contributor|40|#E0A050|shield|warn,freeze,goto,bring,jail,unjail,mut
 RANK|riswag|Moderator|30|#E0A050|flame|warn,goto,unmute,clearwarn,adminroom,calls,boardclear,freeze,banroom,jail,unjail,mute,places,items,staffview,screens,boards,gamereset,walls,radio,tp|-1
 RANK|rchtot|Host|20|#E0A050|star|warn,adminroom,clearwarn,calls,goto,videolink,screens,boardclear,gamereset,podcast,staffview,tp|-1
 RANK|helper|NAD|10|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset,jail,unjail,mute,unmute,freeze,goto,radio,boardclear,tp|-1
+CLAN|cdmm5u|كلان جديد|#3EA0FF|TAG|-1
+CRANK|cdmm5u|ka2ivo|قائد|20|#FFD54D
+CRANK|cdmm5u|kei0uc|عضو|10|#FFFFFF
 USER|Cito7|mod||
 USER|VoidkLo|ren1q1||
 USER|Exit a5f3|mod||
