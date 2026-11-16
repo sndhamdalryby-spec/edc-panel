@@ -3,15 +3,16 @@
 # USER|vrchat name|rank|clan|clan rank   VIP|vrchat name   RING|rank:key / clan:key / vip / user:name|color|head or shoulder|picture strip|size %|arm: % shoulder->elbow, head: height %
 # ATLAS|cols|rows|version (emblems)   RINGS|cols|rows|version (ring pictures, 1024 x 128 slots)
 PERMV|2
-RANK|owner|Community|90|#FFD54D|crown|all|-1
-RANK|manager|Owner|80|#FF4D6D|gem|warn,clearwarn,kick,release,ban,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,podaccess,admaccess,radioadd,vip,coins,selfcoins,adminroom,all,calls,staffview,screens,boards,gamereset|-1
-RANK|admin|star|70|#A35CFF|star|bring,goto,pullto,carry,places,pullall,freeze,jail,unjail,mute,unmute,warn,clearwarn,kick,ban,release,coins,selfcoins,vip,podaccess,admaccess,items,returnitems,givefly,givemic,mic,radio,adminroom,podcast,banroom,viprooms,calls,staffview,screens,videolink,boards,boardclear,gamereset,store,tp,access|-1
-RANK|mod|Co Owner|60|#3EA0FF|badge|warn,clearwarn,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,adminroom,calls,staffview,screens,boards,gamereset,freeze,kick,ban,release,items,selfcoins,podaccess,admaccess,returnitems,givefly,givemic,mic,radio,radioctl,banroom,viprooms,walls,boardclear,store,videolink,tp,access|-1
-RANK|vip|عضو مميز|50|#FFB86B|gem|podcast|-1
-RANK|helper|مساعد|40|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset,jail,unjail,mute,unmute,freeze,goto,radio,tp|-1
-RANK|rrh9pd|Admin|30|#2E4084|bolt|warn,jail,clearwarn,adminroom,calls,mute,unmute|-1
-RANK|riswag|Moderator|20|#E0A050|shield|warn|-1
-RANK|ren1q1|Contributor|10|#E0A050|star|warn|-1
+RANK|owner|Community|100|#FFD54D|crown|all|-1
+RANK|manager|Owner|90|#FF4D6D|gem|warn,clearwarn,kick,release,ban,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,podaccess,admaccess,radioadd,vip,coins,selfcoins,adminroom,all,calls,staffview,screens,boards,gamereset|-1
+RANK|admin|star|80|#A35CFF|star|bring,goto,pullto,carry,places,pullall,freeze,jail,unjail,mute,unmute,warn,clearwarn,kick,ban,release,coins,selfcoins,vip,podaccess,admaccess,items,returnitems,givefly,givemic,mic,radio,adminroom,podcast,banroom,viprooms,calls,staffview,screens,videolink,boards,boardclear,gamereset,store,tp,access|-1
+RANK|mod|Co Owner|70|#3EA0FF|badge|warn,clearwarn,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,adminroom,calls,staffview,screens,boards,gamereset,freeze,kick,ban,release,items,selfcoins,podaccess,admaccess,returnitems,givefly,givemic,mic,radio,radioctl,banroom,viprooms,walls,boardclear,store,videolink,tp,access|-1
+RANK|vip|عضو مميز|60|#FFB86B|gem|podcast|-1
+RANK|helper|مساعد|50|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset,jail,unjail,mute,unmute,freeze,goto,radio,tp|-1
+RANK|rrh9pd|Admin|40|#2E4084|bolt|warn,jail,clearwarn,adminroom,calls,mute,unmute|-1
+RANK|riswag|Moderator|30|#E0A050|shield|warn|-1
+RANK|ren1q1|Contributor|20|#E0A050|star|warn|-1
+RANK|rchtot|رتبة جديدة|10|#E0A050|star|warn|-1
 CLAN|cz0h8d|𝑽 𝑶 𝑰 𝑫|#AB97D8|VOD|0
 CRANK|cz0h8d|keseni|NΛD ~|30|#FFD54D
 CRANK|cz0h8d|ks6s5e|عضو|20|#FFFFFF
