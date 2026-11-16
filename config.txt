@@ -17,7 +17,7 @@ CLAN|cz0h8d|𝑽 𝑶 𝑰 𝑫|#AB97D8|VOD|0
 CRANK|cz0h8d|keseni|NΛD ~|30|#FFD54D
 CRANK|cz0h8d|ks6s5e|عضو|20|#FFFFFF
 CRANK|cz0h8d|kbj5dn|رتبة|10|#FFFFFF
-USER|Yzn?|-||
+USER|Yzn?|admin||
 USER|zyad_12|helper||
 USER|Cito7|mod||
 USER|VoidkLo|mod||
