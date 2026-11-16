@@ -8,9 +8,9 @@ RANK|manager|Owner|90|#FF4D6D|gem|warn,clearwarn,kick,release,ban,jail,unjail,br
 RANK|admin|star|80|#A35CFF|star|bring,goto,pullto,carry,places,pullall,freeze,jail,unjail,mute,unmute,warn,clearwarn,kick,ban,release,coins,selfcoins,vip,podaccess,admaccess,items,returnitems,givefly,givemic,mic,radio,adminroom,podcast,banroom,viprooms,calls,staffview,screens,videolink,boards,boardclear,gamereset,store,tp,access|-1
 RANK|mod|Co Owner|70|#3EA0FF|badge|warn,clearwarn,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,adminroom,calls,staffview,screens,boards,gamereset,freeze,kick,ban,release,items,selfcoins,podaccess,admaccess,returnitems,givefly,givemic,mic,radio,radioctl,banroom,viprooms,walls,boardclear,store,videolink,tp,access|-1
 RANK|vip|عضو مميز|60|#FFB86B|gem|podcast|-1
-RANK|helper|مساعد|50|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset,jail,unjail,mute,unmute,freeze,goto,radio,tp|-1
-RANK|rrh9pd|Admin|40|#2E4084|bolt|warn,jail,clearwarn,adminroom,calls,mute,unmute|-1
-RANK|riswag|Moderator|30|#E0A050|shield|warn,goto,jail,unjail,mute,unmute,clearwarn,kick,release,adminroom,calls,boardclear,freeze,banroom,tp|-1
+RANK|rrh9pd|Admin|50|#2E4084|bolt|warn,jail,clearwarn,adminroom,calls,mute,unmute|-1
+RANK|riswag|Moderator|40|#E0A050|shield|warn,goto,jail,unjail,mute,unmute,clearwarn,kick,release,adminroom,calls,boardclear,freeze,banroom,tp|-1
+RANK|helper|مساعد|30|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset,jail,unjail,mute,unmute,freeze,goto,radio,tp|-1
 RANK|ren1q1|Contributor|20|#E0A050|star|warn,freeze,goto,bring,jail,unjail,mute,unmute,clearwarn,kick,ban,release,items,returnitems,givemic,mic,adminroom,banroom,podcast,calls,screens,boardclear,gamereset,store,radio,admaccess,tp,access|-1
 RANK|rchtot|Trainee|10|#E0A050|star|warn,adminroom,clearwarn|-1
 CLAN|cz0h8d|𝑽 𝑶 𝑰 𝑫|#AB97D8|VOD|0
