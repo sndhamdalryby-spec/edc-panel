@@ -11,7 +11,7 @@ RANK|ren1q1|Contributor|40|#E0A050|shield|warn,freeze,goto,bring,jail,unjail,mut
 RANK|riswag|Moderator|30|#E0A050|flame|warn,goto,unmute,clearwarn,adminroom,calls,boardclear,freeze,banroom,jail,unjail,mute,places,items,staffview,screens,boards,gamereset,walls,radio,tp|-1
 RANK|rchtot|Host|20|#E0A050|star|warn,adminroom,clearwarn,calls,goto,videolink,screens,boardclear,gamereset,podcast,staffview,tp|-1
 RANK|helper|NAD|10|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset,jail,unjail,mute,unmute,freeze,goto,radio,boardclear,tp|-1
-CLAN|caob41|كلان جديد|#3EA0FF|TAG|-1
+CLAN|caob41|Lost Island|#3EA0FF|TAG|-1
 CRANK|caob41|k8ged9|قائد|20|#FFD54D
 CRANK|caob41|kfds3p|عضو|10|#FFFFFF
 USER|Cito7|mod||
