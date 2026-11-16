@@ -12,7 +12,7 @@ RANK|helper|مساعد|50|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,s
 RANK|rrh9pd|Admin|40|#2E4084|bolt|warn,jail,clearwarn,adminroom,calls,mute,unmute|-1
 RANK|riswag|Moderator|30|#E0A050|shield|warn|-1
 RANK|ren1q1|Contributor|20|#E0A050|star|warn|-1
-RANK|rchtot|Treenr|10|#E0A050|star|warn|-1
+RANK|rchtot|T|10|#E0A050|star|warn|-1
 CLAN|cz0h8d|𝑽 𝑶 𝑰 𝑫|#AB97D8|VOD|0
 CRANK|cz0h8d|keseni|NΛD ~|30|#FFD54D
 CRANK|cz0h8d|ks6s5e|عضو|20|#FFFFFF
