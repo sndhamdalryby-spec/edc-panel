@@ -15,9 +15,6 @@ CLAN|caob41|Lost Island|#3EA0FF||-1
 CRANK|caob41|k8ged9|قائد|30|#FFD54D
 CRANK|caob41|kfds3p|عضو|20|#FFFFFF
 CRANK|caob41|kqvxtw|رتبة|10|#FFFFFF
-CLAN|cjk8p2|كلان جديد|#3EA0FF|TAG|-1
-CRANK|cjk8p2|kjph8i|قائد|20|#FFD54D
-CRANK|cjk8p2|kr166a|عضو|10|#FFFFFF
 USER|Cito7|mod||
 USER|VoidkLo|ren1q1||
 USER|Exit a5f3|mod||
