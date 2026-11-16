@@ -11,10 +11,9 @@ RANK|ren1q1|Contributor|40|#E0A050|shield|warn,freeze,goto,bring,jail,unjail,mut
 RANK|riswag|Moderator|30|#E0A050|flame|warn,goto,unmute,clearwarn,adminroom,calls,boardclear,freeze,banroom,jail,unjail,mute,places,items,staffview,screens,boards,gamereset,walls,radio,tp|-1
 RANK|rchtot|Host|20|#E0A050|star|warn,adminroom,clearwarn,calls,goto,videolink,screens,boardclear,gamereset,podcast,staffview,tp|-1
 RANK|helper|NAD|10|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset,jail,unjail,mute,unmute,freeze,goto,radio,boardclear,tp|-1
-CLAN|cz0h8d|𝑽 𝑶 𝑰 𝑫|#AB97D8|VOD|0
-CRANK|cz0h8d|keseni|NΛD ~|30|#FFD54D
-CRANK|cz0h8d|ks6s5e|عضو|20|#FFFFFF
-CRANK|cz0h8d|kbj5dn|رتبة|10|#FFFFFF
+CLAN|caob41|كلان جديد|#3EA0FF|TAG|-1
+CRANK|caob41|k8ged9|قائد|20|#FFD54D
+CRANK|caob41|kfds3p|عضو|10|#FFFFFF
 USER|Cito7|mod||
 USER|VoidkLo|ren1q1||
 USER|Exit a5f3|mod||
@@ -37,5 +36,5 @@ RING|rank:helper|#E3E3E3|shoulder|4|100|-1
 RING|rank:ren1q1|#FFFFFF|shoulder|5|100|-1
 RING|rank:riswag|#FFFFFF|shoulder|6|100|-1
 RING|rank:rchtot|#FFFFFF|shoulder|7|100|-1
-ATLAS|8|8|mwhbqhzb
+ATLAS|8|8|mwjm7yvx
 RINGS|1|16|mwjlte88
