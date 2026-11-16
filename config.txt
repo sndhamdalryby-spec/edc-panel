@@ -3,7 +3,7 @@
 # USER|vrchat name|rank|clan|clan rank   VIP|vrchat name   RING|rank:key / clan:key / vip / user:name|color|head or shoulder|picture strip|size %|arm: % shoulder->elbow, head: height %
 # ATLAS|cols|rows|version (emblems)   RINGS|cols|rows|version (ring pictures, 1024 x 128 slots)
 PERMV|2
-RANK|owner|Community|80|#FFD54D|crown|all|-1
+RANK|owner|Community|80|#FFD54D|crown|all,walls,ghost|-1
 RANK|admin|star|70|#A35CFF|star|bring,goto,pullto,carry,places,pullall,freeze,jail,unjail,mute,unmute,warn,clearwarn,kick,ban,release,items,returnitems,givefly,givemic,mic,radio,adminroom,podcast,banroom,calls,staffview,screens,videolink,boards,boardclear,gamereset,store,tp|-1
 RANK|manager|Owner|60|#FF4D6D|gem|bring,goto,pullto,carry,places,pullall,freeze,jail,unjail,mute,unmute,warn,clearwarn,kick,ban,release,coins,selfcoins,vip,podaccess,admaccess,items,returnitems,givefly,givemic,mic,radio,radioctl,radioadd,adminroom,podcast,banroom,calls,staffview,screens,videolink,boards,boardclear,gamereset,store,walls,tp,access|-1
 RANK|mod|Co Owner|50|#3EA0FF|bolt|warn,clearwarn,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,adminroom,calls,staffview,screens,boards,gamereset,freeze,kick,ban,release,items,selfcoins,podaccess,admaccess,returnitems,givefly,givemic,mic,radio,radioctl,banroom,walls,boardclear,store,videolink,pullall,tp,access|-1
