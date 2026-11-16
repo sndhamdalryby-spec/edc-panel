@@ -15,7 +15,7 @@ RANK|ren1q1|Contributor|20|#E0A050|star|warn,freeze,goto,bring,jail,unjail,mute,
 RANK|rchtot|Trainee|10|#E0A050|star|warn,adminroom,clearwarn|-1
 CLAN|culd61|كلان جديد|#3EA0FF|TAG|-1|https://vrchat.com/home/group/grp_18792921-6a85-40dd-b872-b9383a6aede7
 CRANK|culd61|kzcbxu|قائد|20|#FFD54D|none|-1|
-CRANK|culd61|kj8rsg|عضو|10|#FFFFFF|none|-1|
+CRANK|culd61|kj8rsg|عضو|10|#FFFFFF|none|-1|*
 USER|Yzn?|admin||
 USER|zyad_12|helper||
 USER|Cito7|mod||
