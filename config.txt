@@ -4,7 +4,7 @@
 # ATLAS|cols|rows|version (emblems)   RINGS|cols|rows|version (ring pictures, 1024 x 128 slots)
 PERMV|2
 RANK|owner|Community|80|#FFD54D|crown|all|-1
-RANK|admin|star|70|#A35CFF|star|bring,goto,pullto,carry,places,pullall,freeze,jail,unjail,mute,unmute,warn,clearwarn,kick,ban,release,items,returnitems,givefly,givemic,mic,radio,adminroom,podcast,banroom,viprooms,calls,staffview,screens,videolink,boards,boardclear,gamereset,store,tp|-1
+RANK|admin|star|70|#A35CFF|star|bring,goto,pullto,carry,places,pullall,freeze,jail,unjail,mute,unmute,warn,clearwarn,kick,ban,release,items,returnitems,givefly,givemic,mic,radio,adminroom,podcast,banroom,calls,staffview,screens,videolink,boards,boardclear,gamereset,store,tp|-1
 RANK|manager|Owner|60|#FF4D6D|gem|warn,clearwarn,kick,release,ban,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,podaccess,admaccess,radioadd,vip,coins,selfcoins,adminroom,all,calls,staffview,screens,boards,gamereset,walls|-1
 RANK|mod|Co Owner|50|#3EA0FF|bolt|warn,clearwarn,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,adminroom,calls,staffview,screens,boards,gamereset,freeze,kick,ban,release,items,selfcoins,podaccess,admaccess,returnitems,givefly,givemic,mic,radio,radioctl,banroom,viprooms,walls,boardclear,store,videolink,pullall,tp,access|-1
 RANK|ren1q1|Contributor|40|#E0A050|shield|warn,freeze,goto,bring,jail,unjail,mute,unmute,clearwarn,kick,ban,release,items,returnitems,givemic,mic,adminroom,banroom,podcast,calls,screens,boardclear,gamereset,store,radio,admaccess,places,givefly,walls,staffview,tp,access|-1
