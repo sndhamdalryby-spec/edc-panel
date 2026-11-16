@@ -29,10 +29,10 @@ USER|K̷H̷D̷|manager||
 USER|Ňყxïøñ|owner||
 RING|rank:owner|#FFFFFF|shoulder|0|110|52
 RING|vip|#FFB86B|head|-1|100|-1
-RING|rank:manager|#FFFFFF|shoulder|-1|110|52
+RING|rank:manager|#FFFFFF|shoulder|1|110|52
 RING|rank:admin|#FFFFFF|shoulder|-1|110|52
 RING|rank:mod|#FFFFFF|shoulder|-1|100|-1
 RING|clan:cz0h8d|#FFFFFF|shoulder|-1|100|-1
 RING|rank:helper|#FFFFFF|shoulder|-1|100|-1
 ATLAS|8|8|mwhbqhzb
-RINGS|1|16|mwj80y8f
+RINGS|1|16|mwj817vn
