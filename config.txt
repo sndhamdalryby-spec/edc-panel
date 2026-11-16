@@ -13,7 +13,6 @@ RANK|rrh9pd|Admin|40|#2E4084|bolt|warn,jail,clearwarn,adminroom,calls,mute,unmut
 RANK|riswag|Moderator|30|#E0A050|shield|warn,goto,jail,unjail,mute,unmute,clearwarn,kick,release,adminroom,calls,boardclear,freeze,banroom,tp|-1
 RANK|ren1q1|Contributor|20|#E0A050|star|warn,freeze,goto,bring,jail,unjail,mute,unmute,clearwarn,kick,ban,release,items,returnitems,givemic,mic,adminroom,banroom,podcast,calls,screens,boardclear,gamereset,store,radio,admaccess,tp,access|-1
 RANK|rchtot|Trainee|10|#E0A050|star|warn,adminroom,clearwarn|-1
-CLAN|cz0h8d||#AB97D8|VOD|0|https://vrchat.com/home/group/grp_18792921-6a85-40dd-b872-b9383a6aede7
 USER|Yzn?|admin||
 USER|zyad_12|helper||
 USER|Cito7|mod||
