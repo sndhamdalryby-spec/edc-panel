@@ -34,6 +34,6 @@ RING|rank:admin|#FFFFFF|shoulder|2|110|52
 RING|rank:mod|#FFFFFF|shoulder|3|100|-1
 RING|clan:cz0h8d|#FFFFFF|shoulder|-1|100|-1
 RING|rank:helper|#E3E3E3|shoulder|4|100|-1
-RING|rank:ren1q1|#E0A050|shoulder|-1|100|-1
+RING|rank:ren1q1|#FFFFFF|shoulder|5|100|-1
 ATLAS|8|8|mwhbqhzb
-RINGS|1|16|mwj82jpv
+RINGS|1|16|mwjlskyh
