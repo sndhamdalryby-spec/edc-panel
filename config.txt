@@ -6,7 +6,7 @@ PERMV|2
 CLAN|cxl2in|Lost Island|#3EA0FF|LIC|0|grp_18792921-6a85-40dd-b872-b9383a6aede7
 CRANK|cxl2in|khihln|Group Owner|70|#FFFFFF|all|-1|grol_d4ed20fd-287a-449d-91d2-3ec3b9510cf9
 CRANK|cxl2in|khjh4s|Don|60|#FFFFFF|all|-1|grol_45809e50-304c-437c-b846-4e203895deea
-CRANK|cxl2in|kxyp0j|AT〢High Mangment|50|#FFFFFF|bring,goto,pullto,carry,places,pullall,freeze,jail,unjail,unmute,mute,warn,clearwarn,kick|-1|grol_27fe7e1f-e5c3-4029-af68-db0927366d82
+CRANK|cxl2in|kxyp0j|AT〢High Mangment|50|#FFFFFF|bring,goto,pullto,carry,places,pullall,freeze,jail,unjail,unmute,mute,warn,clearwarn,kick,ban|-1|grol_27fe7e1f-e5c3-4029-af68-db0927366d82
 CRANK|cxl2in|ks6zf0|AT〢Technical Mangment|40|#FFFFFF|none|-1|grol_b66822ff-ab1e-488f-b0a6-539829dd5ba5
 CRANK|cxl2in|k9d1d3|AT〢 Support|30|#FFFFFF|none|-1|grol_ff5233ff-75f8-4348-ac7c-4c9593bc6198
 CRANK|cxl2in|kf43ql|AT〢Ghost|20|#FFFFFF|none|-1|grol_4e80a7ae-034b-4021-b1b1-baac624235f5
