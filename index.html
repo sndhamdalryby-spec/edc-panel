@@ -64,6 +64,9 @@ textarea{width:100%;min-height:260px;background:var(--ink);color:var(--txt);bord
 .chip.lnk{border-style:dashed}
 .rolebox{width:100%;margin-top:6px}
 .how{background:rgba(15,11,31,.45);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:10px 0 4px}
+.hrow{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 10px;border:1px solid var(--line);border-radius:10px;margin:6px 0;cursor:pointer}
+.hrow.on{border-color:var(--acc);background:rgba(236,159,46,.08)}.hrow small{color:var(--sub)}
+.hdet{padding:6px 12px 10px;line-height:1.9;font-size:13.5px}.hdet .add{color:#5fd38a}.hdet .gone{color:#ff9b9b}
 @media (max-width:480px){.sub-list{padding-right:0}}
 .how ol{margin:4px 0 0;padding-right:20px}.how li{color:var(--sub);font-size:13px;line-height:1.8}.how li b{color:var(--txt);font-weight:600}
 .ringbtn.on{border-color:var(--gold);color:var(--gold)}
@@ -94,24 +97,25 @@ textarea{width:100%;min-height:260px;background:var(--ink);color:var(--txt);bord
 <div class="card" id="setup">
   <b>إعداد أول مرة (مرة وحدة بس)</b>
   <p class="hint" style="margin:6px 0 10px">1) سوّ توكن من <a href="https://github.com/settings/tokens/new?scopes=repo&amp;description=EDC%20Panel" target="_blank" style="color:#ffd54d">هنا</a> — اختر مدة (Expiration) واضغط <b>Generate token</b> تحت، وانسخه.
-  2) الصقه في خانة التوكن تحت واضغط <b>تجهيز المستودع والصفحة</b>. اللوحة تسوي المستودع <b>edc-panel</b> وتنشر نفسها وتفعّل GitHub Pages لحالها.</p>
+  2) الصقه في خانة التوكن تحت واضغط <b>تجهيز المستودع والصفحة</b>. اللوحة تسوي المستودع <b>everyday-panel</b> وتنشر نفسها وتفعّل GitHub Pages لحالها.</p>
   <div class="row"><button class="pri" onclick="setupAll()">⚙ تجهيز المستودع والصفحة</button><span class="hint" id="setupOut"></span></div>
 </div>
 <div class="card" id="conn">
   <div id="connOk" class="row hidden" style="justify-content:space-between">
     <span>✓ متصل بـ GitHub (<b id="who"></b>) — التوكن محفوظ في هذا الجهاز، وأي تعديل ينحفظ لحاله<br><span class="hint" id="liveState"></span></span>
-    <span class="row"><button onclick="loadRemote()">⬇ تحديث</button><button class="pri" id="pubBtn" onclick="publish()">⬆ حفظ ونشر للماب</button></span>
+    <span class="row"><button onclick="openHist()" title="كل حفظ ينحفظ كنسخة: شوفها وارجع لأي وحدة">🕘 النسخ السابقة</button><button onclick="loadRemote()">⬇ تحديث</button><button class="pri" id="pubBtn" onclick="publish()">⬆ حفظ ونشر للماب</button></span>
   </div>
   <form id="connNo" class="hidden" onsubmit="event.preventDefault();connect()">
     <b>اتصل بـ GitHub من أي جهاز: افتح الرابط، الصق التوكن، واضغط اتصال</b>
     <p class="hint" style="margin:6px 0 10px">الصق التوكن واضغط <b>اتصال</b>. ينحفظ في هذا المتصفح وما يطلبه منك مرة ثانية. ما عندك توكن؟ سوّه من <a href="https://github.com/settings/tokens/new?scopes=repo&amp;description=EDC%20Panel" target="_blank" style="color:#ffd54d">هنا</a> واختر في Expiration: <b>No expiration</b> عشان ما ينتهي، بعدين <b>Generate token</b> وانسخه.</p>
     <input type="text" id="ghuser" name="username" autocomplete="username" style="display:none">
-    <div class="row"><input id="token" name="password" type="password" placeholder="ghp_..." autocomplete="current-password" style="flex:1;min-width:220px"><button class="pri" type="submit">اتصال</button></div>
+    <div class="row"><button class="pri" type="button" onclick="pasteToken()" style="font-size:16px;padding:10px 18px">📋 الصق التوكن واتصل</button></div>
+    <div class="row" style="margin-top:6px"><input id="token" name="password" type="password" placeholder="أو الصقه هنا بنفسك" autocomplete="current-password" style="flex:1;min-width:220px"><button class="pri" type="submit">اتصال</button></div>
   </form>
   <details style="margin-top:8px"><summary class="hint" style="cursor:pointer">إعدادات متقدمة</summary>
     <div class="row" style="margin-top:8px">
       <label class="f">حساب GitHub<input id="owner" placeholder="username"></label>
-      <label class="f">المستودع<input id="repo" placeholder="edc-panel"></label>
+      <label class="f">المستودع<input id="repo" placeholder="everyday-panel"></label>
       <label class="f">الفرع<input id="branch" value="main" style="width:90px"></label>
       <button class="del" onclick="forget()">نسيان التوكن من هذا الجهاز</button>
     </div>
@@ -129,6 +133,7 @@ textarea{width:100%;min-height:260px;background:var(--ink);color:var(--txt);bord
 <div id="ringDlg" class="modal hidden" onclick="if(event.target===this)closeRing()"><div class="mbox" id="ringBox"></div></div>
 <div id="emoPop" class="emo hidden"></div>
 <div id="upDlg" class="modal hidden" onclick="if(event.target===this)closeUp()"><div class="mbox" id="upBox"></div></div>
+<div id="histDlg" class="modal hidden" onclick="if(event.target===this)closeHist()"><div class="mbox" id="histBox"></div></div>
 <input type="file" id="filepick" accept="image/*" class="hidden">
 <input type="file" id="jsonpick" accept=".json,application/json" class="hidden">
 <script>
@@ -360,7 +365,10 @@ async function encodePNG(w, h, rgba){
 
 // ---------------------------------------------------------------- GitHub
 function cfg(){ return {o:$("owner").value.trim(), r:$("repo").value.trim(), b:$("branch").value.trim()||"main", t:$("token").value.trim()}; }
-const PANEL_VER = 23;   // v23: «استيراد البيانات» - the group straight from VRChat through «مساعد القروبات» (no files)
+const PANEL_VER = 26;   // v24: «النسخ السابقة» (bring back an earlier save) + clan ranks show only what a clan may have
+                         // v25: the repo was renamed (edc-panel -> everyday-panel): follow the name GitHub gives it
+                         // v26: «📋 الصق التوكن واتصل» - one press reads the token he just copied on GitHub and connects
+// v23: «استيراد البيانات» - the group straight from VRChat through «مساعد القروبات» (no files)
 // v22: clans = VRChat groups (link, roles, clan ranks linked to roles, own permissions)
 // v21: + "boardlog" (whiteboards: who drew / who wiped; part of "all")
 const SOLO = ["walls","ghost","hours"];   // v19: permissions that are never part of "all" - ticked on their own (v20: + hours)
@@ -375,6 +383,16 @@ function setConn(ok){
   $("ghuser").value = $("owner").value.trim();
   if (!location.hostname.endsWith("github.io")) $("setup").style.display = ok ? "none" : "";   // first-time setup is done once connected
 }
+// v26: the owner copies the new token on GitHub (copy icon next to it), then one press here: the browser asks once to
+// let this page read the clipboard; only a GitHub token is taken (github_pat_ / ghp_), anything else is refused.
+async function pasteToken(){
+  let t = "";
+  try { t = String(await navigator.clipboard.readText() || "").trim(); }
+  catch(e){ say("المتصفح ما سمح يقرأ اللي نسخته — اضغط «سماح» لو طلع لك سؤال، أو اضغط بالزر اليمين في الخانة واختر لصق وبعدين اتصال", "bad"); $("token").focus(); return; }
+  if (!/^(github_pat_|ghp_)[A-Za-z0-9_]{20,}$/.test(t)){ say("اللي منسوخ مو توكن — ارجع لصفحة GitHub واضغط زر النسخ اللي جنب التوكن الأخضر، وبعدين اضغط الزر هنا مرة ثانية", "bad"); return; }
+  $("token").value = t; t = "";
+  await connect();
+}
 function forget(){ localStorage.removeItem("edc_token"); $("token").value = ""; setConn(false); say("انمسح التوكن من هذا الجهاز", "ok"); }
 function tokenBad(){ localStorage.removeItem("edc_token"); $("token").value = ""; setConn(false); }
 async function connect(){
@@ -383,10 +401,25 @@ async function connect(){
   const me = await api("/user");
   if (!me.ok){ $("token").value = ""; say("التوكن غير صحيح أو منتهي (" + me.status + ") — سوّ واحد جديد من الرابط", "bad"); return; }
   if (!$("owner").value.trim()) $("owner").value = me.js.login;
-  if (!$("repo").value.trim()) $("repo").value = "edc-panel";
+  if (!$("repo").value.trim()) $("repo").value = "everyday-panel";
+  await canonRepo();
   saveCfg(); setConn(true);
   say("تم الاتصال ✓ — التوكن محفوظ في هذا الجهاز", "ok");
   await loadRemote(); selfUpdate();
+}
+// v25: a renamed repo (GitHub keeps the old name as a redirect) -> take the name GitHub answers with, so the page,
+// the history and the map links follow the rename by themselves. No token is sent with this check (public repo).
+async function canonRepo(){
+  const o = $("owner").value.trim(), r = $("repo").value.trim(); if (!o || !r) return;
+  try {
+    const res = await fetch("https://api.github.com/repos/" + encodeURIComponent(o) + "/" + encodeURIComponent(r));
+    if (!res.ok) return;
+    const j = await res.json();
+    const nr = j && j.name ? String(j.name) : "", no = j && j.owner && j.owner.login ? String(j.owner.login) : "";
+    if (!nr || !no || (nr === r && no === o)) return;
+    $("repo").value = nr; $("owner").value = no; saveCfg(); showUrls();
+    say("المستودع صار اسمه " + nr + " ✓ — اللوحة تحولت له", "ok");
+  } catch(e){}
 }
 // a newer copy of this page (e.g. the one on the PC) updates the online copy by itself, never the other way round
 async function selfUpdate(){
@@ -454,7 +487,7 @@ async function setupAll(){
   try {
     out.textContent = "أتأكد من التوكن…";
     const me = await api("/user"); if (!me.ok) throw new Error("التوكن غير صحيح (" + me.status + ")");
-    $("owner").value = me.js.login; if (!$("repo").value.trim()) $("repo").value = "edc-panel"; $("branch").value = "main";
+    $("owner").value = me.js.login; if (!$("repo").value.trim()) $("repo").value = "everyday-panel"; $("branch").value = "main";
     saveCfg(); setConn(true);
     const c = cfg();
     out.textContent = "أسوي المستودع…";
@@ -672,7 +705,7 @@ function togPerm(i, k){
 // clan rank is linked to roles of the group and has its own permissions, emblem and ring. In an instance opened by a
 // member of the clan (the map asks him if he is in several clans), whoever has a linked role gets that clan rank -
 // only in that instance. Gifts that stay with a player everywhere are for the map's own ranks only.
-const CLAN_BLOCK = ["coins","selfcoins","vip","hours","instclan"];
+const CLAN_BLOCK = ["coins","selfcoins","vip","hours","instclan","walls","ghost","viprooms","radioctl","radioadd"];   // v24: + walls, ghost, VIP rooms, radio control
 let CS = {};          // clans.json: {grp_x: {name, code, members, seen, roles:[{id, name, n}], at}}
 let ROS = {};         // rosters read from the sync file / roster.txt: {grp_x: {all:[hash], by:{grol:[hash]}}}
 const openCP = new Set();
@@ -732,10 +765,10 @@ function roleChips(i, j){
 function permChipsC(i, j){
   const r = M.clans[i].ranks[j], ps = r.perms || [];
   const has = k => ps.includes(k) || (ps.includes("all") && !SOLO.includes(k));
-  return `<div class="pgs">${PERM_GROUPS.map(([g, list]) => `<div class="pg"><div class="pgt">${g}</div><div class="chips">${list.map(([k,t]) => CLAN_BLOCK.includes(k)
-      ? `<span class="chip blk" title="للإدارة العامة بس: أثرها يبقى مع اللاعب في كل الانستنسات">${t}</span>`
-      : `<span class="chip ${has(k) ? "on" : ""}" onclick="togCPerm(${i},${j},'${k}')">${t}</span>`).join("")}</div></div>`).join("")}
-    <div class="chips"><span class="chip ${ps.includes("all") ? "on" : ""}" onclick="togCPerm(${i},${j},'all')">كل الصلاحيات (داخل انستنس الكلان)</span><span class="chip" onclick="M.clans[${i}].ranks[${j}].perms=[];render()">مسح الكل</span></div></div>`;
+  return `<div class="pgs">${PERM_GROUPS.map(([g, list]) => { const ok = list.filter(([k]) => !CLAN_BLOCK.includes(k)); return ok.length ? `<div class="pg"><div class="pgt">${g}</div><div class="chips">${ok.map(([k,t]) =>
+      `<span class="chip ${has(k) ? "on" : ""}" onclick="togCPerm(${i},${j},'${k}')">${t}</span>`).join("")}</div></div>` : ""; }).join("")}
+    <div class="chips"><span class="chip ${ps.includes("all") ? "on" : ""}" onclick="togCPerm(${i},${j},'all')">كل الصلاحيات (داخل انستنس الكلان)</span><span class="chip" onclick="M.clans[${i}].ranks[${j}].perms=[];render()">مسح الكل</span></div>
+    <p class="hint" style="margin:6px 0 0">ممنوعة على الكلانات دايماً (لإدارة افري داي بس): إهداء العملات وإضافتها، تذاكر VIP، دخول غرف VIP، المرور من الجدران ووضع الحر، التحكم بالراديو (يدخلون الراديو عادي)، الساعات، تحديد كلان الانستنس، والسجن الدائم.</p></div>`;
 }
 function renderClans(){
   $("t-clans").innerHTML = `<div class="row" style="justify-content:space-between"><b>الكلانات (قروبات VRChat)</b><span class="row"><button onclick="refreshAll(false)" ${importing ? "disabled" : ""} title="يجيب أعضاء كل القروبات من جديد">🔄 حدّث الأعضاء</button><button onclick="addClan()">＋ كلان</button></span></div>
@@ -954,6 +987,86 @@ function rolesToRanks(i){
   g.roles.forEach(ro => { if (linked.has(ro.id)) return; c.ranks.push({key:uid('k'), name:clean(ro.name) || 'رتبة', color:'#FFFFFF', img:null, perms:[], roles:[ro.id]}); n++; });
   render();
   say(n ? "انضافت " + n + " رتبة، كل وحدة مربوطة برتبة القروب اللي بنفس اسمها. الحين اختر صلاحياتها وشعارها." : "كل رتب القروب مربوطة من قبل", "ok");
+}
+// ---------------------------------------------------------------- v24: earlier versions (every save is a commit on GitHub)
+let HIST = null, histSel = -1;
+const histTxt = {};
+async function ghAt(path, ref){
+  const c = cfg(), hd = {"Accept":"application/vnd.github+json", ...(c.t ? {"Authorization":"Bearer " + c.t} : {})};
+  const r = await fetch(`https://api.github.com/repos/${c.o}/${c.r}/contents/${path}?ref=${encodeURIComponent(ref)}&t=${Date.now()}`, {cache:"no-store", headers:hd});
+  if (r.status === 404) return null;
+  if (!r.ok) throw new Error("GitHub " + r.status);
+  const f = await r.json();
+  if (f.content && f.content.replace(/\s/g, "")) return f.content;
+  if (!f.sha) return null;
+  const b = await fetch(`https://api.github.com/repos/${c.o}/${c.r}/git/blobs/${f.sha}`, {cache:"no-store", headers:hd});
+  return b.ok ? (await b.json()).content : null;
+}
+async function openHist(){
+  const c = cfg();
+  if (!c.t){ setConn(false); say("الصق التوكن واضغط اتصال أول", "bad"); return; }
+  HIST = null; histSel = -1;
+  $("histDlg").classList.remove("hidden"); renderHist();
+  try {
+    const r = await api(`/repos/${c.o}/${c.r}/commits?path=config.txt&per_page=40&sha=${encodeURIComponent(c.b)}`);
+    if (!r.ok) throw new Error("GitHub " + r.status);
+    HIST = (r.js || []).map(x => ({sha: x.sha, at: x.commit && x.commit.author ? x.commit.author.date : ""}));
+  } catch(e){ HIST = []; say("تعذر جلب النسخ: " + e.message, "bad"); }
+  renderHist();
+}
+function closeHist(){ $("histDlg").classList.add("hidden"); }
+async function pickHist(i){
+  histSel = histSel === i ? -1 : i; renderHist();
+  const h = HIST && HIST[i]; if (!h || histSel !== i || h.sha in histTxt) return;
+  try { const b = await ghAt("config.txt", h.sha); histTxt[h.sha] = b ? utf8b64(b) : ""; } catch(e){ histTxt[h.sha] = null; }
+  renderHist();
+}
+// what an earlier version has, next to what the dashboard has now
+function histDiff(t){
+  const m = fromText(t), list = (a, b, key, name) => a.filter(x => !b.some(y => key(y) === key(x))).map(name);
+  const rk = x => x.key, rn = x => x.name, un = x => clean(x.name).toLowerCase();
+  return {m, rAdd: list(m.ranks, M.ranks, rk, rn), rGone: list(M.ranks, m.ranks, rk, rn),
+          uAdd: list(m.users, M.users, un, x => x.name), uGone: list(M.users, m.users, un, x => x.name),
+          cAdd: list(m.clans, M.clans, rk, rn), cGone: list(M.clans, m.clans, rk, rn)};
+}
+function renderHist(){
+  let h = `<div class="row" style="justify-content:space-between"><b style="font-size:17px">النسخ السابقة</b><button onclick="closeHist()">✕</button></div>
+  <p class="hint">كل حفظ ينحفظ كنسخة في GitHub. اضغط على أي وقت تشوف وش فيه، وتقدر ترجّع الداشبورد له بالضبط (الرتب والأعضاء والكلانات والحلقات والشعارات). اللي الحين يبقى بعد في السجل، فتقدر ترجع له إذا احتجت.</p>`;
+  if (HIST === null) h += `<p class="hint">جاري جلب النسخ…</p>`;
+  else if (!HIST.length) h += `<p class="hint">ما لقيت نسخ.</p>`;
+  else HIST.forEach((x, i) => {
+    h += `<div class="hrow ${histSel === i ? "on" : ""}" onclick="pickHist(${i})"><span>${esc(fmtAt(x.at))}</span><small>${i === 0 ? "الحالية على النت" : ""}</small></div>`;
+    if (histSel !== i) return;
+    const t = histTxt[x.sha];
+    if (t === undefined){ h += `<div class="hdet hint">جاري جلبها…</div>`; return; }
+    if (t === null || t === ""){ h += `<div class="hdet hint">تعذر قراءة هذي النسخة.</div>`; return; }
+    const d = histDiff(t), part = (lab, a, cls) => a.length ? `<div class="${cls}">${lab}: ${a.map(esc).join("، ")}</div>` : "";
+    h += `<div class="hdet">فيها: <b>${d.m.ranks.length}</b> رتبة، <b>${d.m.users.length}</b> عضو، <b>${d.m.clans.length}</b> كلان.
+      ${part("رتب ترجع", d.rAdd, "add")}${part("رتب تروح", d.rGone, "gone")}${part("أعضاء يرجعون", d.uAdd, "add")}${part("أعضاء يروحون", d.uGone, "gone")}${part("كلانات ترجع", d.cAdd, "add")}${part("كلانات تروح", d.cGone, "gone")}
+      ${!d.rAdd.length && !d.rGone.length && !d.uAdd.length && !d.uGone.length && !d.cAdd.length && !d.cGone.length ? `<div class="hint">نفس الرتب والأعضاء والكلانات اللي الحين (ممكن تختلف في الصلاحيات أو الألوان).</div>` : ""}
+      <div class="row" style="margin-top:8px"><button class="pri" onclick="event.stopPropagation();restoreHist(${i})">↩ رجّع هذي النسخة</button></div></div>`;
+  });
+  $("histBox").innerHTML = h;
+}
+async function restoreHist(i){
+  const x = HIST && HIST[i], t = x && histTxt[x.sha];
+  if (!t) return;
+  if (!confirm("ترجّع الداشبورد لنسخة " + fmtAt(x.at) + "؟\nالرتب والأعضاء والكلانات والحلقات والشعارات ترجع مثل ما كانت، واللي الحين يبقى في السجل.")) return;
+  try {
+    say("أرجّع النسخة…");
+    M = fromText(t);
+    const a = await ghAt("atlas.png", x.sha);
+    if (a) await sliceAtlas("data:image/png;base64," + a.replace(/\s/g, ""));
+    if (M.rings.some(r => r.cell >= 0)){
+      let rb = await ghAt("rings.png", x.sha), mime = "image/png";
+      if (!rb){ rb = await ghAt("rings.jpg", x.sha); mime = "image/jpeg"; }
+      if (rb) await sliceRings(`data:${mime};base64,` + rb.replace(/\s/g, ""));
+    }
+    lastAtlasB64 = null; lastRingsB64 = null; curAtlasVer = ""; curRingsVer = "";
+    closeHist(); render();
+    await publish(false);
+    say("تم ✓ رجعت نسخة " + fmtAt(x.at) + " ووصلت للماب", "ok");
+  } catch(e){ say("تعذر الإرجاع: " + e.message, "bad"); }
 }
 function permText(key){
   const r = M.ranks.find(x => x.key === key); if (!r) return "—";
@@ -1199,7 +1312,7 @@ async function renderText(){
   ["owner","repo","branch"].forEach(id => $(id).addEventListener("change", saveCfg));
   if (location.hostname.endsWith("github.io")) $("setup").style.display = "none";
   showUrls(); defaults(); render(); setConn(!!t);
-  if ($("owner").value && $("repo").value) loadRemote().then(() => {
+  if ($("owner").value && $("repo").value) canonRepo().then(() => loadRemote()).then(() => {
     if (t) selfUpdate();
     let used = false; try { used = localStorage.getItem("edc_helper") === "1"; } catch(e){}
     if (t && used && !IS_PHONE && M.clans.some(c => gidOf(c))) refreshAll(true);
