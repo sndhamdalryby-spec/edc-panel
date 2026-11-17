@@ -22,8 +22,6 @@ CRANK|culd61|kejnht|AT〢 Support|30|#FFFFFF|none|-1|grol_ff5233ff-75f8-4348-ac7
 CRANK|culd61|kr9mue|AT〢Ghost|20|#FFFFFF|none|-1|grol_4e80a7ae-034b-4021-b1b1-baac624235f5
 CRANK|culd61|keqmuv|AT〢 Admin|10|#FFFFFF|adminroom|-1|grol_9dbe0959-e0d2-441d-b749-98c879b5a5d2
 CLAN|cr4a6i|كلان جديد|#3EA0FF|TAG|-1|grp_212a24a4-24e2-4057-9b25-f6dd01570440
-CRANK|cr4a6i|ky8a66|قائد|20|#FFD54D|none|-1|
-CRANK|cr4a6i|kzailc|عضو|10|#FFFFFF|none|-1|
 USER|Yzn?|admin||
 USER|zyad_12|helper||
 USER|Cito7|mod||
