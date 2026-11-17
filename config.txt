@@ -14,9 +14,8 @@ RANK|riswag|Moderator|30|#E0A050|shield|warn,goto,jail,unjail,mute,unmute,clearw
 RANK|ren1q1|Contributor|20|#E0A050|star|warn,freeze,goto,bring,jail,unjail,mute,unmute,clearwarn,kick,ban,release,items,returnitems,givemic,mic,adminroom,banroom,podcast,calls,screens,boardclear,gamereset,store,radio,admaccess,tp,access|-1
 RANK|rchtot|Trainee|10|#E0A050|star|warn,adminroom,clearwarn|-1
 CLAN|culd61|Lost Island|#3EA0FF|LIC|0|grp_18792921-6a85-40dd-b872-b9383a6aede7
-CRANK|culd61|ki1qgf|Group Owner|90|#FFFFFF|none|-1|grol_d4ed20fd-287a-449d-91d2-3ec3b9510cf9
-CRANK|culd61|kyhk7u|Don|80|#FFFFFF|none|-1|grol_45809e50-304c-437c-b846-4e203895deea
-CRANK|culd61|kxfc9b|AT〢 Bot|70|#FFFFFF|none|-1|grol_a0534dc9-85a8-40b7-b4ee-5c2785856961
+CRANK|culd61|ki1qgf|Group Owner|80|#FFFFFF|none|-1|grol_d4ed20fd-287a-449d-91d2-3ec3b9510cf9
+CRANK|culd61|kyhk7u|Don|70|#FFFFFF|none|-1|grol_45809e50-304c-437c-b846-4e203895deea
 CRANK|culd61|kurl3p|AT〢High Mangment|60|#FFFFFF|none|-1|grol_27fe7e1f-e5c3-4029-af68-db0927366d82
 CRANK|culd61|kml8ei|AT〢Technical Mangment|50|#FFFFFF|none|-1|grol_b66822ff-ab1e-488f-b0a6-539829dd5ba5
 CRANK|culd61|kejnht|AT〢 Support|40|#FFFFFF|none|-1|grol_ff5233ff-75f8-4348-ac7c-4c9593bc6198
