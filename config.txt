@@ -22,9 +22,8 @@ CRANK|culd61|kejnht|AT〢 Support|30|#FFFFFF|none|-1|grol_ff5233ff-75f8-4348-ac7
 CRANK|culd61|kr9mue|AT〢Ghost|20|#FFFFFF|none|-1|grol_4e80a7ae-034b-4021-b1b1-baac624235f5
 CRANK|culd61|keqmuv|AT〢 Admin|10|#FFFFFF|adminroom|-1|grol_9dbe0959-e0d2-441d-b749-98c879b5a5d2
 CLAN|cr4a6i|Everyday Community|#3EA0FF|EDC|1|grp_212a24a4-24e2-4057-9b25-f6dd01570440
-CRANK|cr4a6i|kotk0q|Group Owner|30|#FFFFFF|none|-1|grol_33c319c2-0710-45cf-a340-5db91409da15
-CRANK|cr4a6i|kck43c|OP|20|#FFFFFF|none|-1|grol_28222e45-af05-4153-97f7-b2c1af4c934a
-CRANK|cr4a6i|kuhl0b|Member|10|#FFFFFF|none|-1|grol_f5ce9572-bc52-480a-ab61-5fdb9d55d1e9
+CRANK|cr4a6i|kotk0q|Group Owner|20|#FFFFFF|none|-1|grol_33c319c2-0710-45cf-a340-5db91409da15
+CRANK|cr4a6i|kck43c|OP|10|#FFFFFF|none|-1|grol_28222e45-af05-4153-97f7-b2c1af4c934a
 USER|Yzn?|admin||
 USER|zyad_12|helper||
 USER|Cito7|mod||
