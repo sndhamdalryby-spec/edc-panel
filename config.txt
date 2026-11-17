@@ -4,8 +4,6 @@
 # ATLAS|cols|rows|version (emblems)   RINGS|cols|rows|version (ring pictures, 1024 x 128 slots)
 PERMV|2
 CLAN|cxl2in|كلان جديد|#3EA0FF|TAG|-1|
-CRANK|cxl2in|kk6bzn|قائد|20|#FFD54D|none|-1|
-CRANK|cxl2in|krcwa0|عضو|10|#FFFFFF|none|-1|
 USER|Yzn?|admin||
 USER|zyad_12|helper||
 USER|Cito7|mod||
