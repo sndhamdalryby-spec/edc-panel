@@ -15,7 +15,6 @@ USER|56yt|mod||
 USER|NΛD ~|helper||
 USER|RÚRA|mod||
 USER|al3grap|owner||
-USER|M a r t i n|mod|||+kick,+ban,+release,+items,+returnitems,+givefly,+givemic,+mic,+radio,+radioctl,+radioadd,+banroom,+viprooms,+walls,+boardclear,+store,+videolink,+access
 USER|AbuS3oOod|owner||
 USER|Ňყxïøñ|owner||
 RING|rank:owner|#FFFFFF|shoulder|-1|110|52
