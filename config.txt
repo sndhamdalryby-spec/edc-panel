@@ -22,4 +22,4 @@ RING|clan:cz0h8d|#FFFFFF|shoulder|-1|100|-1
 RING|rank:helper|#E3E3E3|shoulder|-1|100|-1
 RING|rank:rvi373|#FFFFFF|shoulder|0|100|-1
 ATLAS|8|8|mwky525b
-RINGS|1|16|mwlbt198
+RINGS|1|16|mwlcoc62
