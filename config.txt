@@ -3,16 +3,6 @@
 # USER|vrchat name|rank|clan|clan rank   VIP|vrchat name   RING|rank:key / clan:key / crank:clan.rank / vip / user:name|color|head or shoulder|picture strip|size %|arm: % shoulder->elbow, head: height %
 # ATLAS|cols|rows|version (emblems)   RINGS|cols|rows|version (ring pictures, 1024 x 128 slots)
 PERMV|2
-RANK|owner|Community|100|#FFD54D|crown|all|-1
-RANK|manager|Owner|90|#FF4D6D|gem|warn,clearwarn,kick,release,ban,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,podaccess,admaccess,radioadd,vip,coins,selfcoins,adminroom,all,calls,staffview,screens,boards,gamereset,walls|-1
-RANK|admin|star|80|#A35CFF|star|bring,goto,pullto,carry,places,pullall,freeze,jail,unjail,mute,unmute,warn,clearwarn,kick,ban,release,coins,selfcoins,vip,podaccess,admaccess,items,returnitems,givefly,givemic,mic,radio,adminroom,podcast,banroom,viprooms,calls,staffview,screens,videolink,boards,boardclear,gamereset,store,tp,access|-1
-RANK|mod|Co Owner|70|#3EA0FF|badge|warn,clearwarn,jail,unjail,bring,goto,pullto,carry,places,podcast,mute,unmute,adminroom,calls,staffview,screens,boards,gamereset,freeze,kick,ban,release,items,selfcoins,podaccess,admaccess,returnitems,givefly,givemic,mic,radio,radioctl,banroom,viprooms,walls,boardclear,store,videolink,tp,access|-1
-RANK|vip|عضو مميز|60|#FFB86B|gem|podcast|-1
-RANK|helper|مساعد|50|#2EE59D|heart|warn,clearwarn,podcast,calls,staffview,screens,boards,gamereset,jail,unjail,mute,unmute,freeze,goto,radio,tp|-1
-RANK|rrh9pd|Admin|40|#2E4084|bolt|warn,jail,clearwarn,adminroom,calls,mute,unmute|-1
-RANK|riswag|Moderator|30|#E0A050|shield|warn,goto,jail,unjail,mute,unmute,clearwarn,kick,release,adminroom,calls,boardclear,freeze,banroom,tp|-1
-RANK|ren1q1|Contributor|20|#E0A050|star|warn,freeze,goto,bring,jail,unjail,mute,unmute,clearwarn,kick,ban,release,items,returnitems,givemic,mic,adminroom,banroom,podcast,calls,screens,boardclear,gamereset,store,radio,admaccess,tp,access|-1
-RANK|rchtot|Trainee|10|#E0A050|star|warn,adminroom,clearwarn|-1
 CLAN|culd61|Lost Island|#3EA0FF|LIC|0|grp_18792921-6a85-40dd-b872-b9383a6aede7
 CRANK|culd61|ki1qgf|Group Owner|70|#FFFFFF|all|-1|grol_d4ed20fd-287a-449d-91d2-3ec3b9510cf9
 CRANK|culd61|kyhk7u|Don|60|#FFFFFF|none|-1|grol_45809e50-304c-437c-b846-4e203895deea
