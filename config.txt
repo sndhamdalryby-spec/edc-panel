@@ -3,7 +3,7 @@
 # USER|vrchat name|rank|clan|clan rank   VIP|vrchat name   RING|rank:key / clan:key / crank:clan.rank / vip / user:name|color|head or shoulder|picture strip|size %|arm: % shoulder->elbow, head: height %
 # ATLAS|cols|rows|version (emblems)   RINGS|cols|rows|version (ring pictures, 1024 x 128 slots)
 PERMV|2
-CLAN|cxl2in|Lost Island|#3EA0FF|LIC|-1|grp_18792921-6a85-40dd-b872-b9383a6aede7
+CLAN|cxl2in|Lost Island|#3EA0FF|LIC|0|grp_18792921-6a85-40dd-b872-b9383a6aede7
 USER|Yzn?|admin||
 USER|zyad_12|helper||
 USER|Cito7|mod||
@@ -25,4 +25,4 @@ RING|rank:admin|#FFFFFF|shoulder|-1|110|52
 RING|rank:mod|#FFFFFF|shoulder|-1|100|-1
 RING|clan:cz0h8d|#FFFFFF|shoulder|-1|100|-1
 RING|rank:helper|#E3E3E3|shoulder|-1|100|-1
-ATLAS|8|8|mwkvztbw
+ATLAS|8|8|mwky525b
