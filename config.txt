@@ -12,7 +12,7 @@ CRANK|cxl2in|ks6zf0|AT〢Technical M  angment|20|#FFFFFF|bring,goto,pullto,carry
 CRANK|cxl2in|k9d1d3|AT〢 Support|10|#FFFFFF|goto,carry,places,freeze,jail,unjail,mute,unmute,warn,clearwarn,items,returnitems,radio,adminroom,podcast,calls,staffview,screens,videolink,boardclear,boardlog,gamereset,store|-1|grol_ff5233ff-75f8-4348-ac7c-4c9593bc6198
 USER|al3grap|rvi373||
 USER|AbuS3oOod|rvi373||
-USER|Ňყxïøñ|rvi373||
+USER|【Oliver】|rvi373||
 RING|rank:owner|#FFFFFF|shoulder|-1|110|52
 RING|vip|#FFB86B|head|-1|100|-1
 RING|rank:manager|#FFFFFF|shoulder|-1|110|52
