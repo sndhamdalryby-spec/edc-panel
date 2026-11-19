@@ -23,6 +23,6 @@ RING|rank:mod|#FFFFFF|shoulder|-1|100|-1
 RING|clan:cz0h8d|#FFFFFF|shoulder|-1|100|-1
 RING|rank:helper|#E3E3E3|shoulder|-1|100|-1
 RING|rank:rvi373|#FFFFFF|head|0|100|-1
-RING|rank:rwkqon|#E0A050|shoulder|-1|100|-1
+RING|rank:rwkqon|#FFFFFF|shoulder|1|100|-1
 ATLAS|8|8|mwky525b
-RINGS|1|16|mwlcoc62
+RINGS|1|16|mwng2iio
